@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 from catalogs import CATALOGS
 import urllib.parse
@@ -27,6 +27,11 @@ def index():
     """
     return "CineMaratona BR 🎬 Stremio Addon está rodando! Instale no Stremio usando a rota /manifest.json"
 
+@app.route("/logo.png")
+def addon_logo():
+    """Rota para servir a logo oficial do Addon diretamente, sem depender de sites externos."""
+    return send_file("logo.png", mimetype="image/png")
+
 @app.route("/manifest.json")
 def addon_manifest():
     """
@@ -43,7 +48,7 @@ def addon_manifest():
         "version": "1.0.1",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
-        "logo": "https://i.imgur.com/gK6B58M.png",
+        "logo": "https://cinemaratona-br.vercel.app/logo.png",
         "resources": ["catalog"],
         "types": ["movie"],
         "catalogs": [
