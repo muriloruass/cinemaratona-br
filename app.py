@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from catalogs import CATALOGS
+import urllib.parse
 
 app = Flask(__name__)
 # Habilitar CORS para permitir que o Stremio se comunique com nossa API sem bloqueios
@@ -30,27 +31,37 @@ def index():
 def addon_manifest():
     """
     Gera o manifesto que o Stremio lê para instalar e entender nosso addon.
-    Ele lista dinamicamente todos os catálogos disponíveis baseados no 'catalogs.py'.
+    Ele cria UM catálogo único na aba Filmes chamado "Sagas e Maratonas" 
+    e usa as chaves do CATALOGS como um menu 'extra' no topo do catálogo.
     """
-    catalogs_list = []
-    
-    # Percorrer o dicionário e adicionar cada saga como um catálogo independente na aba Filmes -> Descobrir
-    for codinome, dados in CATALOGS.items():
-        catalogs_list.append({
-            "type": "movie",
-            "id": f"cine_{codinome}",
-            "name": dados["name"]
-        })
+    # Ordenar os nomes das listas alfabeticamente
+    saga_names = [dados["name"] for dados in CATALOGS.values()]
+    saga_names.sort()
 
     manifest = {
         "id": "br.cinemaratona.addon",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "name": "CineMaratona BR 🎬",
-        "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Descubra coleções épicas de cinema, das sagas clássicas até maratonas temáticas.",
+        "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
         "logo": "https://i.imgur.com/gK6B58M.png",
         "resources": ["catalog"],
         "types": ["movie"],
-        "catalogs": catalogs_list,
+        "catalogs": [
+            {
+                "type": "movie",
+                "id": "cine_maratona",
+                "name": "Sagas e Maratonas",
+                "extra": [
+                    {
+                        "name": "Escolha a Saga",
+                        "isRequired": True,
+                        "options": saga_names
+                    }
+                ],
+                "extraSupported": ["Escolha a Saga"],
+                "extraRequired": ["Escolha a Saga"]
+            }
+        ],
         "stremioAddonsConfig": {
             "issuer": "https://stremio-addons.net",
             "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..01bufPwIGEuO8R9okmf43g.eqmi2c8kR0SG7OAWfGNvVMgT8JTy8BPTtN-S8FatjxUoh0sXZxiEAXRMYu3hfa68kO_WMHtkEw_kYtHCpbJP1rMcHXVpj5WWi1o0kGtmIapWiYQOH4MPZcut1bfS0QfM.YT0FeLMuRummbV3hBIqeYw"
@@ -60,26 +71,62 @@ def addon_manifest():
     return respond_with(manifest)
 
 @app.route("/catalog/<media_type>/<catalog_id>.json")
-def addon_catalog(media_type, catalog_id):
+def addon_catalog_default(media_type, catalog_id):
     """
-    Rota chamada pelo Stremio quando o usuário clica em um catálogo específico.
-    Exemplo de catalog_id recebido: 'cine_marvel'
+    Esta rota de fallback é acionada caso o Stremio abra a aba pela primeira vez sem um <saga_param> na URL.
+    Ela carrega a primeira saga baseada na ordem alfabética.
     """
-    # Apenas lidamos com filmes, se for série ou canal, retornamos vazio
-    if media_type != "movie":
-        return respond_with({"metas": []})
-    
-    # Nosso ID tem o prefixo 'cine_', vamos remover para pegar o codinome do CATALOGS
-    raw_id = catalog_id.replace("cine_", "")
-    
-    if raw_id not in CATALOGS:
+    if media_type != "movie" or catalog_id != "cine_maratona":
         return respond_with({"metas": []})
         
-    saga = CATALOGS[raw_id]
-    lista_filmes = saga["items"]
-    metas = []
+    saga_names = [dados["name"] for dados in CATALOGS.values()]
+    saga_names.sort()
     
-    # Construir o array 'metas' conforme a exigência do Stremio (id, tipo, nome e poster)
+    if not saga_names:
+        return respond_with({"metas": []})
+        
+    # Pega o primeiro nome em ordem alfabética
+    primeira_saga_nome = saga_names[0]
+    
+    lista_filmes = []
+    for saga in CATALOGS.values():
+        if saga["name"] == primeira_saga_nome:
+            lista_filmes = saga["items"]
+            break
+
+    metas = []
+    for filme in lista_filmes:
+        metas.append({
+            "id": filme["id"],
+            "type": "movie",
+            "name": filme["name"],
+            "poster": POSTER_METAHUB_URL.format(filme["id"])
+        })
+        
+    return respond_with({"metas": metas})
+
+@app.route("/catalog/<media_type>/<catalog_id>/<saga_param>.json")
+def addon_catalog_com_extra(media_type, catalog_id, saga_param):
+    """
+    Rota chamada pelo Stremio quando o usuário seleciona uma saga específica no menu.
+    O param entra na URL no formato -> "Escolha%20a%20Saga=Alien%20(Ordem%20Cronológica)"
+    """
+    if media_type != "movie" or catalog_id != "cine_maratona":
+        return respond_with({"metas": []})
+    
+    # Decodificar os caracteres sujos da URL e ignorar a chave no =
+    param_descodificado = urllib.parse.unquote(saga_param)
+    
+    # Exemplo: "Escolha a Saga=Alien (Ordem Cronológica)"
+    saga_selecionada = param_descodificado.split("=")[-1]
+    
+    lista_filmes = []
+    for saga in CATALOGS.values():
+        if saga["name"] == saga_selecionada:
+            lista_filmes = saga["items"]
+            break
+
+    metas = []
     for filme in lista_filmes:
         metas.append({
             "id": filme["id"],
