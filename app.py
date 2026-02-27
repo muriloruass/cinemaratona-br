@@ -81,17 +81,19 @@ def addon_catalog_default(media_type, catalog_id):
     saga_names = [dados["name"] for dados in CATALOGS.values()]
     saga_names.sort()
     
-    if not saga_names:
-        return respond_with({"metas": []})
-        
-    # Pega o primeiro nome em ordem alfabética
-    primeira_saga_nome = saga_names[0]
+    import random
     
+    # Criar uma lista "Destaques" pegando o primeiro filme de 15 sagas aleatórias
     lista_filmes = []
-    for saga in CATALOGS.values():
-        if saga["name"] == primeira_saga_nome:
-            lista_filmes = saga["items"]
-            break
+    todas_sagas = list(CATALOGS.values())
+    
+    # Escolhe até 15 sagas aleatórias (ou todas se tiver menos de 15)
+    sagas_aleatorias = random.sample(todas_sagas, min(15, len(todas_sagas)))
+    
+    for saga in sagas_aleatorias:
+        if len(saga["items"]) > 0:
+            # Pegar apenas o primeiro filme de cada saga selecionada para dar um "gostinho"
+            lista_filmes.append(saga["items"][0])
 
     metas = []
     for filme in lista_filmes:
