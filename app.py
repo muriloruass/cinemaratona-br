@@ -27,6 +27,11 @@ def index():
     """
     return "CineMaratona BR 🎬 Stremio Addon está rodando! Instale no Stremio usando a rota /manifest.json"
 
+@app.route("/ping")
+def ping():
+    """Endpoint leve para manter o servidor acordado via UptimeRobot ou similar."""
+    return "pong", 200
+
 @app.route("/cinemaratona.png")
 def addon_logo():
     """Rota para servir a logo oficial do Addon diretamente, sem depender de sites externos."""
