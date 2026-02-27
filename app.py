@@ -50,7 +50,11 @@ def addon_manifest():
         "logo": "https://i.imgur.com/gK6B58M.png",
         "resources": ["catalog"],
         "types": ["movie"],
-        "catalogs": catalogs_list
+        "catalogs": catalogs_list,
+        "stremioAddonsConfig": {
+            "issuer": "https://stremio-addons.net",
+            "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..01bufPwIGEuO8R9okmf43g.eqmi2c8kR0SG7OAWfGNvVMgT8JTy8BPTtN-S8FatjxUoh0sXZxiEAXRMYu3hfa68kO_WMHtkEw_kYtHCpbJP1rMcHXVpj5WWi1o0kGtmIapWiYQOH4MPZcut1bfS0QfM.YT0FeLMuRummbV3hBIqeYw"
+        }
     }
     
     return respond_with(manifest)
