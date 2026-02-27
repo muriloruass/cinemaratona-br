@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 from catalogs import CATALOGS
 import urllib.parse
+import random
 
 app = Flask(__name__)
 # Habilitar CORS para permitir que o Stremio se comunique com nossa API sem bloqueios
@@ -9,6 +10,16 @@ CORS(app)
 
 # URL padrão e confiável para obter posters do Stremio via ID do IMDb
 POSTER_METAHUB_URL = "https://images.metahub.space/poster/medium/{}/img"
+
+# --- Cache calculado uma única vez na inicialização do servidor ---
+# Lista ordenada de nomes de sagas para o manifest (evita recalcular a cada request)
+SAGA_NAMES_SORTED = sorted(dados["name"] for dados in CATALOGS.values())
+
+# Índice de sagas por nome para busca O(1) (evita loop linear a cada seleção de gênero)
+CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
+
+# Lista de todas as sagas para o sorteio aleatório da tela inicial
+ALL_SAGAS = list(CATALOGS.values())
 
 def respond_with(data):
     """
@@ -44,9 +55,7 @@ def addon_manifest():
     Ele cria UM catálogo único na aba Filmes chamado "Sagas e Maratonas" 
     e usa as chaves do CATALOGS como um menu 'extra' no topo do catálogo.
     """
-    # Ordenar os nomes das listas alfabeticamente
-    saga_names = [dados["name"] for dados in CATALOGS.values()]
-    saga_names.sort()
+    # Manifesto usa SAGA_NAMES_SORTED pré-computado na inicialização
 
     manifest = {
         "id": "br.cinemaratona.addon",
@@ -65,7 +74,7 @@ def addon_manifest():
                     {
                         "name": "genre",
                         "isRequired": False,
-                        "options": saga_names
+                        "options": SAGA_NAMES_SORTED
                     }
                 ],
                 "extraSupported": ["genre"]
@@ -88,22 +97,10 @@ def addon_catalog_default(media_type, catalog_id):
     if media_type != "movie" or catalog_id != "cine_maratona":
         return respond_with({"metas": []})
         
-    saga_names = [dados["name"] for dados in CATALOGS.values()]
-    saga_names.sort()
+    # Usar o cache pré-computado para sortear as sagas (sem recalcular a lista)
+    sagas_aleatorias = random.sample(ALL_SAGAS, min(15, len(ALL_SAGAS)))
     
-    import random
-    
-    # Criar uma lista "Destaques" pegando o primeiro filme de 15 sagas aleatórias
-    lista_filmes = []
-    todas_sagas = list(CATALOGS.values())
-    
-    # Escolhe até 15 sagas aleatórias (ou todas se tiver menos de 15)
-    sagas_aleatorias = random.sample(todas_sagas, min(15, len(todas_sagas)))
-    
-    for saga in sagas_aleatorias:
-        if len(saga["items"]) > 0:
-            # Pegar apenas o primeiro filme de cada saga selecionada para dar um "gostinho"
-            lista_filmes.append(saga["items"][0])
+    lista_filmes = [saga["items"][0] for saga in sagas_aleatorias if saga["items"]]
 
     metas = []
     for filme in lista_filmes:
@@ -128,11 +125,9 @@ def addon_catalog_com_extra(media_type, catalog_id, saga_param):
     # Decodificar o nome da saga que vem na URL protegida
     saga_selecionada = urllib.parse.unquote(saga_param)
     
-    lista_filmes = []
-    for saga in CATALOGS.values():
-        if saga["name"] == saga_selecionada:
-            lista_filmes = saga["items"]
-            break
+    # Busca O(1) usando o índice pré-calculado — sem loop
+    saga = CATALOG_BY_NAME.get(saga_selecionada)
+    lista_filmes = saga["items"] if saga else []
 
     metas = []
     for filme in lista_filmes:
