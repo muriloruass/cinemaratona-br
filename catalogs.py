@@ -74,7 +74,7 @@ CATALOGS = {
             {"id": "tt3315342", "name": "Logan"},
             {"id": "tt5463162", "name": "Deadpool 2"},
             {"id": "tt6565702", "name": "X-Men: Fênix Negra"},
-            {"id": "tt4677138", "name": "Os Novos Mutantes"}
+            {"id": "tt4682266", "name": "Os Novos Mutantes"}
         ]
     },
     "007": {
@@ -353,7 +353,7 @@ CATALOGS = {
             {"id": "tt2293640", "name": "Minions"},
             {"id": "tt3469046", "name": "Meu Malvado Favorito 3"},
             {"id": "tt5113044", "name": "Minions 2: A Origem de Gru"},
-            {"id": "tt7569228", "name": "Meu Malvado Favorito 4"}
+            {"id": "tt7510222", "name": "Meu Malvado Favorito 4"}
         ]
     },
     "transformers": {
@@ -366,7 +366,7 @@ CATALOGS = {
             {"id": "tt3371366", "name": "Transformers: O Último Cavaleiro"},
             {"id": "tt4701182", "name": "Bumblebee"},
             {"id": "tt5090568", "name": "Transformers: O Despertar das Feras"},
-            {"id": "tt4622012", "name": "Transformers: O Início"}
+            {"id": "tt8864596", "name": "Transformers: O Início"}
         ]
     },
 
@@ -374,7 +374,7 @@ CATALOGS = {
     "alien": {
         "name": "Alien (Ordem Cronológica)",
         "items": [
-            {"id": "tt1179518", "name": "Prometheus"},
+            {"id": "tt1446714", "name": "Prometheus"},
             {"id": "tt2316204", "name": "Alien: Covenant"},
             {"id": "tt0078748", "name": "Alien, o Oitavo Passageiro"},
             {"id": "tt18412256", "name": "Alien: Romulus"},
@@ -388,7 +388,7 @@ CATALOGS = {
         "items": [
             {"id": "tt0093773", "name": "O Predador"},
             {"id": "tt0100405", "name": "Predador 2"},
-            {"id": "tt0440259", "name": "Predadores"},
+            {"id": "tt1424381", "name": "Predadores"},
             {"id": "tt3829266", "name": "O Predador (2018)"},
             {"id": "tt11866324", "name": "O Predador: A Caçada (Prey)"}
         ]
@@ -398,13 +398,13 @@ CATALOGS = {
         "items": [
             {"id": "tt0080761", "name": "Sexta-Feira 13"},
             {"id": "tt0082431", "name": "Sexta-Feira 13 - Parte 2"},
-            {"id": "tt0083952", "name": "Sexta-Feira 13 - Parte 3"},
+            {"id": "tt0083972", "name": "Sexta-Feira 13 - Parte 3"},
             {"id": "tt0087298", "name": "Sexta-Feira 13 - Parte 4: O Capítulo Final"},
             {"id": "tt0089232", "name": "Sexta-Feira 13 - Parte 5: Um Novo Começo"},
             {"id": "tt0091080", "name": "Sexta-Feira 13 - Parte 6: Jason Vive"},
             {"id": "tt0095179", "name": "Sexta-Feira 13 - Parte 7: A Matança Continua"},
             {"id": "tt0123092", "name": "Jason Vai Para o Inferno: A Última Sexta-Feira"},
-            {"id": "tt0311438", "name": "Jason X"},
+            {"id": "tt0211443", "name": "Jason X"},
             {"id": "tt0329030", "name": "Freddy x Jason"},
             {"id": "tt0758746", "name": "Sexta-Feira 13 (2009)"}
         ]
@@ -418,7 +418,7 @@ CATALOGS = {
             {"id": "tt0095742", "name": "A Hora do Pesadelo 4: O Mestre dos Sonhos"},
             {"id": "tt0097981", "name": "A Hora do Pesadelo 5: O Maior Horror de Freddy"},
             {"id": "tt0101917", "name": "A Hora do Pesadelo 6: Pesadelo Final - A Morte de Freddy"},
-            {"id": "tt0110662", "name": "O Novo Pesadelo: O Retorno de Freddy Krueger"},
+            {"id": "tt0111686", "name": "O Novo Pesadelo: O Retorno de Freddy Krueger"},
             {"id": "tt1179056", "name": "A Hora do Pesadelo (2010)"}
         ]
     },
@@ -463,10 +463,10 @@ CATALOGS = {
             {"id": "tt27714581", "name": "Sentimental Value"},
             {"id": "tt14905854", "name": "Hamnet"},
             {"id": "tt12300742", "name": "Bugonia"},
-            {"id": "tt7097310", "name": "F1"},
+            {"id": "tt16311594", "name": "F1"},
             {"id": "tt27847051", "name": "O Agente Secreto (Brasil)"},
             {"id": "tt29768334", "name": "Train Dreams"},
-            {"id": "tt32452296", "name": "Blue Moon"}
+            {"id": "tt32536315", "name": "Blue Moon"}
         ]
     },
     "oscar2026_intl": {
@@ -481,12 +481,12 @@ CATALOGS = {
     "cinemanacional": {
         "name": "🇧🇷 Cinema Brasileiro em Alta",
         "items": [
-            {"id": "tt28014526", "name": "Ainda Estou Aqui"},
-            {"id": "tt11124208", "name": "O Auto da Compadecida 2"},
-            {"id": "tt27382209", "name": "Maníaco do Parque"},
-            {"id": "tt6566958", "name": "Bacurau"},
-            {"id": "tt10800030", "name": "Marighella"},
-            {"id": "tt10851866", "name": "Turma da Mônica: Laços"}
+            {"id": "tt14961016", "name": "Ainda Estou Aqui"},
+            {"id": "tt28696532", "name": "O Auto da Compadecida 2"},
+            {"id": "tt28497675", "name": "Maníaco do Parque"},
+            {"id": "tt2762506", "name": "Bacurau"},
+            {"id": "tt7825208", "name": "Marighella"},
+            {"id": "tt8169552", "name": "Turma da Mônica: Laços"}
         ]
     },
     "nolan": {
@@ -524,7 +524,7 @@ CATALOGS = {
         "name": "🌙 Maratona Terror Halloween",
         "items": [
             {"id": "tt0077651", "name": "Halloween - A Noite do Terror"},
-            {"id": "tt0117646", "name": "Pânico"},
+            {"id": "tt27728888", "name": "Pânico"},
             {"id": "tt1457767", "name": "Invocação do Mal"},
             {"id": "tt0070047", "name": "O Exorcista"},
             {"id": "tt1598778", "name": "A Entidade"}
@@ -533,12 +533,12 @@ CATALOGS = {
     "comedias_br": {
         "name": "🤣 Melhores Comédias Brasileiras",
         "items": [
-            {"id": "tt2400332", "name": "Minha Mãe é uma Peça: O Filme"},
-            {"id": "tt4858054", "name": "Minha Mãe é uma Peça 2"},
-            {"id": "tt9685324", "name": "Minha Mãe é uma Peça 3"},
+            {"id": "tt2464018", "name": "Minha Mãe é uma Peça: O Filme"},
+            {"id": "tt3212812", "name": "Minha Mãe é uma Peça 2"},
+            {"id": "tt10611372", "name": "Minha Mãe é uma Peça 3"},
             {"id": "tt0271383", "name": "O Auto da Compadecida"},
             {"id": "tt0478198", "name": "Se Eu Fosse Você"},
-            {"id": "tt1122588", "name": "Se Eu Fosse Você 2"}
+            {"id": "tt1099227", "name": "Se Eu Fosse Você 2"}
         ]
     }
 }
