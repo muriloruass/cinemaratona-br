@@ -21,8 +21,8 @@ CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
 # Lista de todas as sagas para o sorteio aleatório da tela inicial
 ALL_SAGAS = list(CATALOGS.values())
 
-# Nome do campo extra que aparece no dropdown do Stremio
-EXTRA_NAME = "🎬 Escolha a Saga"
+# Nome do campo extra — usa 'genre' (padrão oficial Stremio) para garantir compatibilidade de URL
+EXTRA_NAME = "genre"
 
 def respond_with(data):
     """
@@ -116,7 +116,7 @@ def addon_catalog_default(media_type, catalog_id):
         
     return respond_with({"metas": metas})
 
-@app.route("/catalog/<media_type>/<catalog_id>/🎬 Escolha a Saga=<saga_param>.json")
+@app.route("/catalog/<media_type>/<catalog_id>/genre=<saga_param>.json")
 def addon_catalog_com_extra(media_type, catalog_id, saga_param):
     """
     Rota chamada pelo Stremio quando o usuário seleciona uma saga específica no menu.
