@@ -53,7 +53,7 @@ def addon_manifest():
         "version": "1.0.1",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
-        "logo": "https://cinemaratona-br.vercel.app/cinemaratona.png",
+        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratona.png",
         "resources": ["catalog"],
         "types": ["movie"],
         "catalogs": [
