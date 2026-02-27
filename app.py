@@ -54,12 +54,11 @@ def addon_manifest():
                 "extra": [
                     {
                         "name": "genre",
-                        "isRequired": True,
+                        "isRequired": False,
                         "options": saga_names
                     }
                 ],
-                "extraSupported": ["genre"],
-                "extraRequired": ["genre"]
+                "extraSupported": ["genre"]
             }
         ],
         "stremioAddonsConfig": {
