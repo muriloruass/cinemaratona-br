@@ -454,16 +454,28 @@ CATALOGS = {
 
     # ⭐ Listas Especiais
     "oscar2026": {
-        "name": "🏆 Possíveis Indicados ao Oscar",
+        "name": "🏆 Oscar 2026: Melhor Filme",
         "items": [
-            {"id": "tt15239678", "name": "Duna: Parte Dois"},
-            {"id": "tt26047818", "name": "Anora"},
-            {"id": "tt8551500", "name": "The Brutalist"},
-            {"id": "tt11564570", "name": "Conclave"},
-            {"id": "tt26359551", "name": "Emilia Pérez"},
-            {"id": "tt11155912", "name": "Sing Sing"},
-            {"id": "tt22864522", "name": "A Complete Unknown (Um Completo Desconhecido)"},
-            {"id": "tt1225375", "name": "Nosferatu"}
+            {"id": "tt31193180", "name": "Sinners"},
+            {"id": "tt30144839", "name": "One Battle After Another"},
+            {"id": "tt1312221", "name": "Frankenstein"},
+            {"id": "tt32916440", "name": "Marty Supreme"},
+            {"id": "tt27714581", "name": "Sentimental Value"},
+            {"id": "tt14905854", "name": "Hamnet"},
+            {"id": "tt12300742", "name": "Bugonia"},
+            {"id": "tt7097310", "name": "F1"},
+            {"id": "tt27847051", "name": "O Agente Secreto (Brasil)"},
+            {"id": "tt29768334", "name": "Train Dreams"},
+            {"id": "tt32452296", "name": "Blue Moon"}
+        ]
+    },
+    "oscar2026_intl": {
+        "name": "🌍 Oscar 2026: Filme Internacional",
+        "items": [
+            {"id": "tt27847051", "name": "O Agente Secreto (Brasil)"},
+            {"id": "tt36491653", "name": "It Was Just an Accident (França)"},
+            {"id": "tt32298285", "name": "Sirāt (Espanha)"},
+            {"id": "tt36943034", "name": "The Voice of Hind Rajab (Tunísia)"}
         ]
     },
     "cinemanacional": {
