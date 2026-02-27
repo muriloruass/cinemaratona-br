@@ -32,10 +32,10 @@ def ping():
     """Endpoint leve para manter o servidor acordado via UptimeRobot ou similar."""
     return "pong", 200
 
-@app.route("/cinemaratona.png")
+@app.route("/cinemaratonaBR.png")
 def addon_logo():
     """Rota para servir a logo oficial do Addon diretamente, sem depender de sites externos."""
-    return send_file("cinemaratona.png", mimetype="image/png")
+    return send_file("cinemaratonaBR.png", mimetype="image/png")
 
 @app.route("/manifest.json")
 def addon_manifest():
@@ -53,7 +53,7 @@ def addon_manifest():
         "version": "1.0.1",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
-        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratona.png",
+        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png",
         "resources": ["catalog"],
         "types": ["movie"],
         "catalogs": [
