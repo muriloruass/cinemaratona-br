@@ -1,13 +1,25 @@
 # CineMaratona BR 🎬
 
-Bem-vindo ao **CineMaratona BR**, um Addon *100% original e feito do zero* para o Stremio!
-O objetivo principal deste addon é trazer as suas sagas de filmes favoritos organizadas diretamente em catálogos com títulos em Português do Brasil e IDs reais do IMDb, prontos para a verdadeira maratona.
+Sou o tipo de pessoa que assiste filme todo dia e fica codando por hobby — então juntei as duas coisas.
 
-## 🌟 O que o Addon faz?
-Diferente dos catálogos convencionais, o CineMaratona BR empacota franquias (como Universo Marvel, Star Wars e Velozes & Furiosos) em catálogos independentes na aba "Descobrir" do Stremio. Esqueça de procurar um por um!
+O CineMaratona BR é um addon original pro Stremio que organiza suas sagas e maratonas favoritas em catálogos separados, tudo em português e com IDs reais do IMDb. Nada de lista bagunçada ou título em inglês sem tradução.
 
-### Destaques
-- **Completamente em Português (PT-BR)** - Catálogos, documentação e filmes localizados.
-- **Leve e Direto** - Arquitetura enxuta através de um servidor Flask e compatível nativamente com Vercel.
-- **IDs Oficiais do IMDb** - Garante puxar os vídeos corretos quando associado a addons como Torrentio.
-- **Listas Especiais Únicas** - (🏆 Indicados ao Oscar, 🎭 Filmes do Nolan/Tarantino, e 🇧🇷 Cinema Nacional).
+## O que ele faz?
+
+Em vez de você ficar procurando filme por filme, as franquias aparecem prontas na aba **Descobrir** do Stremio — Marvel, Star Wars, Velozes & Furiosos e muito mais, tudo em ordem e em PT-BR.
+
+Funciona perfeitinho junto com addons como o Torrentio.
+
+## O que tem dentro
+
+- 🇧🇷 Tudo em Português do Brasil
+- 🎬 Mais de 35 sagas organizadas e em ordem
+- 🏆 Lista de possíveis indicados ao Oscar 2026
+- 🎭 Maratonas de diretor — Nolan, Tarantino e mais
+- ⚡ Leve, simples e compatível com Vercel
+
+## Ainda em desenvolvimento
+
+A visão é maior — em breve o usuário vai poder escolher o idioma das sagas. Isso é só o começo.
+
+Feito com 🎬 + ☕ + muito tempo de madrugada.
