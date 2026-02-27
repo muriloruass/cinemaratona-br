@@ -53,13 +53,13 @@ def addon_manifest():
                 "name": "Sagas e Maratonas",
                 "extra": [
                     {
-                        "name": "Escolha a Saga",
+                        "name": "genre",
                         "isRequired": True,
                         "options": saga_names
                     }
                 ],
-                "extraSupported": ["Escolha a Saga"],
-                "extraRequired": ["Escolha a Saga"]
+                "extraSupported": ["genre"],
+                "extraRequired": ["genre"]
             }
         ],
         "stremioAddonsConfig": {
@@ -105,20 +105,17 @@ def addon_catalog_default(media_type, catalog_id):
         
     return respond_with({"metas": metas})
 
-@app.route("/catalog/<media_type>/<catalog_id>/<saga_param>.json")
+@app.route("/catalog/<media_type>/<catalog_id>/genre=<saga_param>.json")
 def addon_catalog_com_extra(media_type, catalog_id, saga_param):
     """
     Rota chamada pelo Stremio quando o usuário seleciona uma saga específica no menu.
-    O param entra na URL no formato -> "Escolha%20a%20Saga=Alien%20(Ordem%20Cronológica)"
+    O param entra na URL no formato -> "genre=Alien%20..."
     """
     if media_type != "movie" or catalog_id != "cine_maratona":
         return respond_with({"metas": []})
     
-    # Decodificar os caracteres sujos da URL e ignorar a chave no =
-    param_descodificado = urllib.parse.unquote(saga_param)
-    
-    # Exemplo: "Escolha a Saga=Alien (Ordem Cronológica)"
-    saga_selecionada = param_descodificado.split("=")[-1]
+    # Decodificar o nome da saga que vem na URL protegida
+    saga_selecionada = urllib.parse.unquote(saga_param)
     
     lista_filmes = []
     for saga in CATALOGS.values():
