@@ -115,14 +115,14 @@ CATALOGS = {
             {"id": "tt0317919", "name": "Missão: Impossível 3"},
             {"id": "tt1229238", "name": "Missão: Impossível - Protocolo Fantasma"},
             {"id": "tt2381249", "name": "Missão: Impossível - Nação Secreta"},
-            {"id": "tt3829920", "name": "Missão: Impossível - Efeito Fallout"},
+            {"id": "tt4912910", "name": "Missão: Impossível - Efeito Fallout"},
             {"id": "tt9603212", "name": "Missão: Impossível - Acerto de Contas Parte 1"}
         ]
     },
     "johnwick": {
         "name": "John Wick",
         "items": [
-            {"id": "tt2802144", "name": "De Volta ao Jogo"},
+            {"id": "tt2911666", "name": "De Volta ao Jogo"},
             {"id": "tt4425200", "name": "John Wick: Um Novo Dia Para Matar"},
             {"id": "tt6146586", "name": "John Wick 3: Parabellum"},
             {"id": "tt10366206", "name": "John Wick 4: Baba Yaga"}
@@ -132,7 +132,7 @@ CATALOGS = {
         "name": "Jason Bourne",
         "items": [
             {"id": "tt0258463", "name": "A Identidade Bourne"},
-            {"id": "tt0343660", "name": "A Supremacia Bourne"},
+            {"id": "tt0372183", "name": "A Supremacia Bourne"},
             {"id": "tt0440963", "name": "O Ultimato Bourne"},
             {"id": "tt1535108", "name": "O Legado Bourne"},
             {"id": "tt4196776", "name": "Jason Bourne"}
@@ -180,7 +180,7 @@ CATALOGS = {
         "items": [
             {"id": "tt0063442", "name": "O Planeta dos Macacos (1968)"},
             {"id": "tt0065462", "name": "De Volta ao Planeta dos Macacos"},
-            {"id": "tt0067093", "name": "Fuga do Planeta dos Macacos"},
+            {"id": "tt0067047", "name": "Fuga do Planeta dos Macacos"},
             {"id": "tt0068408", "name": "A Conquista do Planeta dos Macacos"},
             {"id": "tt0069768", "name": "A Batalha do Planeta dos Macacos"},
             {"id": "tt0133152", "name": "Planeta dos Macacos (2001)"},
@@ -227,7 +227,7 @@ CATALOGS = {
             {"id": "tt0075148", "name": "Rocky: Um Lutador"},
             {"id": "tt0079817", "name": "Rocky II: A Revanche"},
             {"id": "tt0084602", "name": "Rocky III: O Desafio Supremo"},
-            {"id": "tt0090022", "name": "Rocky IV"},
+            {"id": "tt0089927", "name": "Rocky IV"},
             {"id": "tt0100507", "name": "Rocky V"},
             {"id": "tt0479143", "name": "Rocky Balboa"},
             {"id": "tt3076658", "name": "Creed: Nascido para Lutar"},
@@ -245,7 +245,7 @@ CATALOGS = {
             {"id": "tt2310332", "name": "O Hobbit: A Batalha dos Cinco Exércitos"},
             {"id": "tt0120737", "name": "O Senhor dos Anéis: A Sociedade do Anel"},
             {"id": "tt0167261", "name": "O Senhor dos Anéis: As Duas Torres"},
-            {"id": "tt0120815", "name": "O Senhor dos Anéis: O Retorno do Rei"}
+            {"id": "tt0167260", "name": "O Senhor dos Anéis: O Retorno do Rei"}
         ]
     },
     "startrek": {
@@ -261,7 +261,7 @@ CATALOGS = {
             {"id": "tt0117731", "name": "Jornada nas Estrelas: Primeiro Contato"},
             {"id": "tt0120844", "name": "Jornada nas Estrelas: Insurreição"},
             {"id": "tt0253754", "name": "Jornada nas Estrelas: Nêmesis"},
-            {"id": "tt0408306", "name": "Star Trek (2009)"},
+            {"id": "tt0796366", "name": "Star Trek (2009)"},
             {"id": "tt1408101", "name": "Além da Escuridão: Star Trek"},
             {"id": "tt2660888", "name": "Star Trek: Sem Fronteiras"}
         ]
@@ -311,7 +311,7 @@ CATALOGS = {
             {"id": "tt1951264", "name": "Em Chamas"},
             {"id": "tt1951265", "name": "A Esperança - Parte 1"},
             {"id": "tt1951266", "name": "A Esperança - O Final"},
-            {"id": "tt10545634", "name": "A Cantiga dos Pássaros e das Serpentes"}
+            {"id": "tt10545296", "name": "A Cantiga dos Pássaros e das Serpentes"}
         ]
     },
     "divergente": {
@@ -361,7 +361,7 @@ CATALOGS = {
         "items": [
             {"id": "tt0418279", "name": "Transformers"},
             {"id": "tt1055369", "name": "Transformers: A Vingança dos Derrotados"},
-            {"id": "tt1055368", "name": "Transformers: O Lado Oculto da Lua"},
+            {"id": "tt1399103", "name": "Transformers: O Lado Oculto da Lua"},
             {"id": "tt2109248", "name": "Transformers: A Era da Extinção"},
             {"id": "tt3371366", "name": "Transformers: O Último Cavaleiro"},
             {"id": "tt4701182", "name": "Bumblebee"},
@@ -387,7 +387,7 @@ CATALOGS = {
         "name": "Predador",
         "items": [
             {"id": "tt0093773", "name": "O Predador"},
-            {"id": "tt0100405", "name": "Predador 2"},
+            {"id": "tt0100403", "name": "Predador 2"},
             {"id": "tt1424381", "name": "Predadores"},
             {"id": "tt3829266", "name": "O Predador (2018)"},
             {"id": "tt11866324", "name": "O Predador: A Caçada (Prey)"}
@@ -397,12 +397,13 @@ CATALOGS = {
         "name": "Sexta-Feira 13",
         "items": [
             {"id": "tt0080761", "name": "Sexta-Feira 13"},
-            {"id": "tt0082431", "name": "Sexta-Feira 13 - Parte 2"},
+            {"id": "tt2508618", "name": "Sexta-Feira 13 - Parte 2"},
             {"id": "tt0083972", "name": "Sexta-Feira 13 - Parte 3"},
             {"id": "tt0087298", "name": "Sexta-Feira 13 - Parte 4: O Capítulo Final"},
-            {"id": "tt0089232", "name": "Sexta-Feira 13 - Parte 5: Um Novo Começo"},
+            {"id": "tt0089173", "name": "Sexta-Feira 13 - Parte 5: Um Novo Começo"},
             {"id": "tt0091080", "name": "Sexta-Feira 13 - Parte 6: Jason Vive"},
             {"id": "tt0095179", "name": "Sexta-Feira 13 - Parte 7: A Matança Continua"},
+            {"id": "tt0097388", "name": "Sexta-Feira 13 - Parte 8: Jason Ataca Nova York"},
             {"id": "tt0123092", "name": "Jason Vai Para o Inferno: A Última Sexta-Feira"},
             {"id": "tt0211443", "name": "Jason X"},
             {"id": "tt0329030", "name": "Freddy x Jason"},
@@ -493,7 +494,7 @@ CATALOGS = {
     "nolan": {
         "name": "🎭 Melhor de Christopher Nolan",
         "items": [
-            {"id": "tt0197765", "name": "Amnésia"},
+            {"id": "tt0209144", "name": "Amnésia"},
             {"id": "tt0240772", "name": "Insônia"},
             {"id": "tt0372784", "name": "Batman Begins"},
             {"id": "tt0482571", "name": "O Grande Truque"},
@@ -501,7 +502,7 @@ CATALOGS = {
             {"id": "tt1375666", "name": "A Origem"},
             {"id": "tt1345836", "name": "Batman: O Cavaleiro das Trevas Ressurge"},
             {"id": "tt0816692", "name": "Interestelar"},
-            {"id": "tt5027774", "name": "Dunkirk"},
+            {"id": "tt5013056", "name": "Dunkirk"},
             {"id": "tt6723592", "name": "Tenet"},
             {"id": "tt15398776", "name": "Oppenheimer"}
         ]
