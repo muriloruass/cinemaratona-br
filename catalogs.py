@@ -482,6 +482,7 @@ CATALOGS = {
         "name": "🇧🇷 Cinema Brasileiro em Alta",
         "items": [
             {"id": "tt14961016", "name": "Ainda Estou Aqui"},
+            {"id": "tt27847051", "name": "O Agente Secreto"},
             {"id": "tt28696532", "name": "O Auto da Compadecida 2"},
             {"id": "tt28497675", "name": "Maníaco do Parque"},
             {"id": "tt2762506", "name": "Bacurau"},
