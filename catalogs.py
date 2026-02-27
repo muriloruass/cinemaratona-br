@@ -180,7 +180,7 @@ CATALOGS = {
         "items": [
             {"id": "tt0063442", "name": "O Planeta dos Macacos (1968)"},
             {"id": "tt0065462", "name": "De Volta ao Planeta dos Macacos"},
-            {"id": "tt0067047", "name": "Fuga do Planeta dos Macacos"},
+            {"id": "tt0067065", "name": "Fuga do Planeta dos Macacos"},
             {"id": "tt0068408", "name": "A Conquista do Planeta dos Macacos"},
             {"id": "tt0069768", "name": "A Batalha do Planeta dos Macacos"},
             {"id": "tt0133152", "name": "Planeta dos Macacos (2001)"},
