@@ -553,7 +553,7 @@ CATALOGS = {
 ANIMATIONS = {
     # ── Pixar ──────────────────────────────────────────────────────────────
     "toystory_anim": {
-        "name": "🚀 Toy Story",
+        "name": "Toy Story",
         "items": [
             {"id": "tt0114709", "name": "Toy Story"},
             {"id": "tt0120363", "name": "Toy Story 2"},
@@ -563,96 +563,96 @@ ANIMATIONS = {
         ]
     },
     "procurandonemo": {
-        "name": "🐟 Procurando Nemo e Dory",
+        "name": "Procurando Nemo e Dory",
         "items": [
             {"id": "tt0266543", "name": "Procurando Nemo"},
             {"id": "tt2277860", "name": "Procurando Dory"}
         ]
     },
     "monstros": {
-        "name": "👾 Monstros S.A.",
+        "name": "Monstros S.A.",
         "items": [
             {"id": "tt0198781", "name": "Monstros S.A."},
-            {"id": "tt1517268", "name": "Universidade Monstros"}
+            {"id": "tt1453405", "name": "Universidade Monstros"}
         ]
     },
     "osincrivel": {
-        "name": "🦸 Os Incríveis",
+        "name": "Os Incríveis",
         "items": [
             {"id": "tt0317705", "name": "Os Incríveis"},
             {"id": "tt3606756", "name": "Os Incríveis 2"}
         ]
     },
     "carros": {
-        "name": "🏎️ Carros",
+        "name": "Carros",
         "items": [
             {"id": "tt0317219", "name": "Carros"},
-            {"id": "tt1216491", "name": "Carros 2"},
+            {"id": "tt1216475", "name": "Carros 2"},
             {"id": "tt3606752", "name": "Carros 3"}
         ]
     },
     "up_pixar": {
-        "name": "🎈 UP: Altas Aventuras",
+        "name": "UP: Altas Aventuras",
         "items": [
             {"id": "tt1049413", "name": "UP: Altas Aventuras"}
         ]
     },
     "ratatouille_pixar": {
-        "name": "🐀 Ratatouille",
+        "name": "Ratatouille",
         "items": [
             {"id": "tt0382932", "name": "Ratatouille"}
         ]
     },
     "wall_e": {
-        "name": "🤖 WALL-E",
+        "name": "WALL-E",
         "items": [
             {"id": "tt0910970", "name": "WALL-E"}
         ]
     },
     "soul_pixar": {
-        "name": "🎷 Soul",
+        "name": "Soul",
         "items": [
             {"id": "tt2948372", "name": "Soul"}
         ]
     },
     "luca_pixar": {
-        "name": "🌊 Luca",
+        "name": "Luca",
         "items": [
             {"id": "tt12801262", "name": "Luca"}
         ]
     },
     "turningred": {
-        "name": "🐼 Red: Crescer é uma Fera",
+        "name": "Red: Crescer é uma Fera",
         "items": [
             {"id": "tt8097030", "name": "Red: Crescer é uma Fera"}
         ]
     },
     "brave_pixar": {
-        "name": "🏹 Valente",
+        "name": "Valente",
         "items": [
             {"id": "tt1217209", "name": "Valente"}
         ]
     },
     "coco_pixar": {
-        "name": "💀 Viva! A Vida é uma Festa",
+        "name": "Viva! A Vida é uma Festa",
         "items": [
             {"id": "tt2380307", "name": "Viva! A Vida é uma Festa"}
         ]
     },
     "onward_pixar": {
-        "name": "🧝 Dois Irmãos: Uma Jornada Fantástica",
+        "name": "Dois Irmãos: Uma Jornada Fantástica",
         "items": [
             {"id": "tt7146812", "name": "Dois Irmãos: Uma Jornada Fantástica"}
         ]
     },
     "elemental_pixar": {
-        "name": "🔥 Elemental",
+        "name": "Elemental",
         "items": [
             {"id": "tt15789038", "name": "Elemental"}
         ]
     },
     "inside_out": {
-        "name": "😊 Divertida Mente",
+        "name": "Divertida Mente",
         "items": [
             {"id": "tt2096673", "name": "Divertida Mente"},
             {"id": "tt22022452", "name": "Divertida Mente 2"}
@@ -661,137 +661,138 @@ ANIMATIONS = {
 
     # ── Disney Clássicos Animados ──────────────────────────────────────────
     "leao": {
-        "name": "🦁 O Rei Leão",
+        "name": "O Rei Leão",
         "items": [
             {"id": "tt0110357", "name": "O Rei Leão (1994)"},
-            {"id": "tt0112641", "name": "O Rei Leão 2: O Reino de Simba"},
-            {"id": "tt8864790", "name": "O Rei Leão (2019)"},
-            {"id": "tt10655524", "name": "Mufasa: O Rei Leão"}
+            {"id": "tt0120131", "name": "O Rei Leão 2: O Reino de Simba"},
+            {"id": "tt6105098", "name": "O Rei Leão (2019)"},
+            {"id": "tt22675690", "name": "Mufasa: O Rei Leão"}
         ]
     },
     "frozen": {
-        "name": "❄️ Frozen",
+        "name": "Frozen",
         "items": [
             {"id": "tt2294629", "name": "Frozen: Uma Aventura Congelante"},
-            {"id": "tt6209470", "name": "Frozen II"}
+            {"id": "tt4520988", "name": "Frozen II"}
         ]
     },
     "moana": {
-        "name": "🌺 Moana",
+        "name": "Moana",
         "items": [
             {"id": "tt3521164", "name": "Moana: Um Mar de Aventuras"},
-            {"id": "tt28479262", "name": "Moana 2"}
+            {"id": "tt33475149", "name": "Moana 2"}
         ]
     },
     "encanto": {
-        "name": "🌿 Encanto",
+        "name": "Encanto",
         "items": [
-            {"id": "tt8628840", "name": "Encanto"}
+            {"id": "tt2953050", "name": "Encanto"}
         ]
     },
     "zootopia": {
-        "name": "🦊 Zootopia",
+        "name": "Zootopia",
         "items": [
-            {"id": "tt2948356", "name": "Zootopia"}
+            {"id": "tt2948356", "name": "Zootopia"},
+            {"id": "tt26443597", "name": "Zootopia 2"}
         ]
     },
     "raya": {
-        "name": "🐉 Raya e o Último Dragão",
+        "name": "Raya e o Último Dragão",
         "items": [
             {"id": "tt5109280", "name": "Raya e o Último Dragão"}
         ]
     },
     "liloestitch": {
-        "name": "🛸 Lilo & Stitch",
+        "name": "Lilo & Stitch",
         "items": [
             {"id": "tt0275847", "name": "Lilo & Stitch"},
-            {"id": "tt0309800", "name": "Lilo & Stitch 2: O Defeito de Stitch"},
-            {"id": "tt0368673", "name": "Leroy & Stitch"}
+            {"id": "tt0457993", "name": "Lilo & Stitch 2: O Defeito de Stitch"},
+            {"id": "tt0486761", "name": "Leroy & Stitch"}
         ]
     },
     "wreck_it_ralph": {
-        "name": "🕹️ WiFi Ralph",
+        "name": "WiFi Ralph",
         "items": [
             {"id": "tt1772341", "name": "Detona Ralph"},
             {"id": "tt5848272", "name": "WiFi Ralph"}
         ]
     },
     "tiana": {
-        "name": "🐸 A Princesa e o Sapo",
+        "name": "A Princesa e o Sapo",
         "items": [
             {"id": "tt0780521", "name": "A Princesa e o Sapo"}
         ]
     },
     "tangled": {
-        "name": "👑 Enrolados",
+        "name": "Enrolados",
         "items": [
             {"id": "tt0398286", "name": "Enrolados"}
         ]
     },
     "mulan_disney": {
-        "name": "🏯 Mulan",
+        "name": "Mulan",
         "items": [
             {"id": "tt0120762", "name": "Mulan (1998)"},
             {"id": "tt4566758", "name": "Mulan (2020)"}
         ]
     },
     "aladdin_disney": {
-        "name": "🧞 Aladdin",
+        "name": "Aladdin",
         "items": [
             {"id": "tt0103639", "name": "Aladdin (1992)"},
             {"id": "tt6139732", "name": "Aladdin (2019)"}
         ]
     },
     "cinderela_disney": {
-        "name": "👠 Cinderela",
+        "name": "Cinderela",
         "items": [
-            {"id": "tt0042032", "name": "Cinderela (1950)"},
+            {"id": "tt0042332", "name": "Cinderela (1950)"},
             {"id": "tt1661199", "name": "Cinderela (2015)"}
         ]
     },
     "bela_fera": {
-        "name": "🌹 A Bela e a Fera",
+        "name": "A Bela e a Fera",
         "items": [
             {"id": "tt0101414", "name": "A Bela e a Fera (1991)"},
             {"id": "tt2771200", "name": "A Bela e a Fera (2017)"}
         ]
     },
     "pequena_sereia": {
-        "name": "🧜 A Pequena Sereia",
+        "name": "A Pequena Sereia",
         "items": [
             {"id": "tt0097757", "name": "A Pequena Sereia (1989)"},
             {"id": "tt5971474", "name": "A Pequena Sereia (2023)"}
         ]
     },
     "dumbo": {
-        "name": "🐘 Dumbo",
+        "name": "Dumbo",
         "items": [
             {"id": "tt0033563", "name": "Dumbo (1941)"},
             {"id": "tt3861390", "name": "Dumbo (2019)"}
         ]
     },
     "bambi": {
-        "name": "🦌 Bambi",
+        "name": "Bambi",
         "items": [
             {"id": "tt0034492", "name": "Bambi"}
         ]
     },
     "peter_pan": {
-        "name": "✨ Peter Pan",
+        "name": "Peter Pan",
         "items": [
             {"id": "tt0046183", "name": "Peter Pan (1953)"},
-            {"id": "tt5280236", "name": "Peter Pan & Wendy"}
+            {"id": "tt5635026", "name": "Peter Pan & Wendy"}
         ]
     },
     "pinoquio": {
-        "name": "🪅 Pinóquio",
+        "name": "Pinóquio",
         "items": [
             {"id": "tt0032910", "name": "Pinóquio (1940)"},
-            {"id": "tt2455546", "name": "Pinóquio (2022)"}
+            {"id": "tt4566796", "name": "Pinóquio (2022)"}
         ]
     },
     "alicenopaisdasmaravilhas": {
-        "name": "🐇 Alice no País das Maravilhas",
+        "name": "Alice no País das Maravilhas",
         "items": [
             {"id": "tt0043274", "name": "Alice no País das Maravilhas (1951)"},
             {"id": "tt1014759", "name": "Alice no País das Maravilhas (2010)"},
@@ -801,7 +802,7 @@ ANIMATIONS = {
 
     # ── Disney Live-Action e Mistos ────────────────────────────────────────
     "malefica": {
-        "name": "🧙‍♀️ Malévola",
+        "name": "Malévola",
         "items": [
             {"id": "tt1587310", "name": "Malévola"},
             {"id": "tt4777008", "name": "Malévola: Dona do Mal"}
