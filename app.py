@@ -67,7 +67,7 @@ def addon_manifest():
 
     manifest = {
         "id": "br.cinemaratona.addon",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
         "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png",

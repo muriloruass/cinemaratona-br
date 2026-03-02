@@ -647,7 +647,7 @@ ANIMATIONS = {
         "name": "Moana",
         "items": [
             {"id": "tt3521164", "name": "Moana: Um Mar de Aventuras"},
-            {"id": "tt33475149", "name": "Moana 2"}
+            {"id": "tt13622970", "name": "Moana 2"}
         ]
     },
     "zootopia": {
