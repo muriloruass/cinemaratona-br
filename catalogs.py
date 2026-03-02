@@ -591,63 +591,18 @@ ANIMATIONS = {
             {"id": "tt3606752", "name": "Carros 3"}
         ]
     },
-    "up_pixar": {
-        "name": "UP: Altas Aventuras",
+    "pixar_filmes": {
+        "name": "Pixar — Filmes Avulsos",
         "items": [
-            {"id": "tt1049413", "name": "UP: Altas Aventuras"}
-        ]
-    },
-    "ratatouille_pixar": {
-        "name": "Ratatouille",
-        "items": [
-            {"id": "tt0382932", "name": "Ratatouille"}
-        ]
-    },
-    "wall_e": {
-        "name": "WALL-E",
-        "items": [
-            {"id": "tt0910970", "name": "WALL-E"}
-        ]
-    },
-    "soul_pixar": {
-        "name": "Soul",
-        "items": [
-            {"id": "tt2948372", "name": "Soul"}
-        ]
-    },
-    "luca_pixar": {
-        "name": "Luca",
-        "items": [
-            {"id": "tt12801262", "name": "Luca"}
-        ]
-    },
-    "turningred": {
-        "name": "Red: Crescer é uma Fera",
-        "items": [
-            {"id": "tt8097030", "name": "Red: Crescer é uma Fera"}
-        ]
-    },
-    "brave_pixar": {
-        "name": "Valente",
-        "items": [
-            {"id": "tt1217209", "name": "Valente"}
-        ]
-    },
-    "coco_pixar": {
-        "name": "Viva! A Vida é uma Festa",
-        "items": [
-            {"id": "tt2380307", "name": "Viva! A Vida é uma Festa"}
-        ]
-    },
-    "onward_pixar": {
-        "name": "Dois Irmãos: Uma Jornada Fantástica",
-        "items": [
-            {"id": "tt7146812", "name": "Dois Irmãos: Uma Jornada Fantástica"}
-        ]
-    },
-    "elemental_pixar": {
-        "name": "Elemental",
-        "items": [
+            {"id": "tt0382932", "name": "Ratatouille"},
+            {"id": "tt0910970", "name": "WALL-E"},
+            {"id": "tt1049413", "name": "UP: Altas Aventuras"},
+            {"id": "tt1217209", "name": "Valente"},
+            {"id": "tt2380307", "name": "Viva! A Vida é uma Festa"},
+            {"id": "tt7146812", "name": "Dois Irmãos: Uma Jornada Fantástica"},
+            {"id": "tt2948372", "name": "Soul"},
+            {"id": "tt12801262", "name": "Luca"},
+            {"id": "tt8097030", "name": "Red: Crescer é uma Fera"},
             {"id": "tt15789038", "name": "Elemental"}
         ]
     },
@@ -683,10 +638,14 @@ ANIMATIONS = {
             {"id": "tt33475149", "name": "Moana 2"}
         ]
     },
-    "encanto": {
-        "name": "Encanto",
+    "disney_filmes": {
+        "name": "Disney — Filmes Avulsos",
         "items": [
-            {"id": "tt2953050", "name": "Encanto"}
+            {"id": "tt2953050", "name": "Encanto"},
+            {"id": "tt5109280", "name": "Raya e o Último Dragão"},
+            {"id": "tt0780521", "name": "A Princesa e o Sapo"},
+            {"id": "tt0398286", "name": "Enrolados"},
+            {"id": "tt0034492", "name": "Bambi"}
         ]
     },
     "zootopia": {
@@ -696,12 +655,7 @@ ANIMATIONS = {
             {"id": "tt26443597", "name": "Zootopia 2"}
         ]
     },
-    "raya": {
-        "name": "Raya e o Último Dragão",
-        "items": [
-            {"id": "tt5109280", "name": "Raya e o Último Dragão"}
-        ]
-    },
+
     "liloestitch": {
         "name": "Lilo & Stitch",
         "items": [
@@ -717,18 +671,8 @@ ANIMATIONS = {
             {"id": "tt5848272", "name": "WiFi Ralph"}
         ]
     },
-    "tiana": {
-        "name": "A Princesa e o Sapo",
-        "items": [
-            {"id": "tt0780521", "name": "A Princesa e o Sapo"}
-        ]
-    },
-    "tangled": {
-        "name": "Enrolados",
-        "items": [
-            {"id": "tt0398286", "name": "Enrolados"}
-        ]
-    },
+
+
     "mulan_disney": {
         "name": "Mulan",
         "items": [
@@ -771,12 +715,7 @@ ANIMATIONS = {
             {"id": "tt3861390", "name": "Dumbo (2019)"}
         ]
     },
-    "bambi": {
-        "name": "Bambi",
-        "items": [
-            {"id": "tt0034492", "name": "Bambi"}
-        ]
-    },
+
     "peter_pan": {
         "name": "Peter Pan",
         "items": [
