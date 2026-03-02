@@ -492,7 +492,7 @@ CATALOGS = {
         ]
     },
     "nolan": {
-        "name": "🎭 Melhor de Christopher Nolan",
+        "name": "Melhor de Christopher Nolan",
         "items": [
             {"id": "tt0209144", "name": "Amnésia"},
             {"id": "tt0240772", "name": "Insônia"},
@@ -508,7 +508,7 @@ CATALOGS = {
         ]
     },
     "tarantino": {
-        "name": "🎭 Melhor de Quentin Tarantino",
+        "name": "Melhor de Quentin Tarantino",
         "items": [
             {"id": "tt0105236", "name": "Cães de Aluguel"},
             {"id": "tt0110912", "name": "Pulp Fiction: Tempo de Violência"},
@@ -523,7 +523,7 @@ CATALOGS = {
         ]
     },
     "halloween": {
-        "name": "🌙 Maratona Terror Halloween",
+        "name": "Maratona Terror Halloween",
         "items": [
             {"id": "tt0077651", "name": "Halloween - A Noite do Terror"},
             {"id": "tt27728888", "name": "Pânico"},
@@ -533,7 +533,7 @@ CATALOGS = {
         ]
     },
     "comedias_br": {
-        "name": "🤣 Melhores Comédias Brasileiras",
+        "name": "Melhores Comédias Brasileiras",
         "items": [
             {"id": "tt2464018", "name": "Minha Mãe é uma Peça: O Filme"},
             {"id": "tt3212812", "name": "Minha Mãe é uma Peça 2"},
@@ -551,6 +551,33 @@ CATALOGS = {
 # ---------------------------------------------------------------------------
 
 ANIMATIONS = {
+    # ── Filmes Avulsos ─────────────────────────────────────────────────────
+    "disney_filmes": {
+        "name": "Disney — Filmes Avulsos",
+        "items": [
+            {"id": "tt2953050", "name": "Encanto"},
+            {"id": "tt5109280", "name": "Raya e o Último Dragão"},
+            {"id": "tt0780521", "name": "A Princesa e o Sapo"},
+            {"id": "tt0398286", "name": "Enrolados"},
+            {"id": "tt0034492", "name": "Bambi"}
+        ]
+    },
+    "pixar_filmes": {
+        "name": "Pixar — Filmes Avulsos",
+        "items": [
+            {"id": "tt0382932", "name": "Ratatouille"},
+            {"id": "tt0910970", "name": "WALL-E"},
+            {"id": "tt1049413", "name": "UP: Altas Aventuras"},
+            {"id": "tt1217209", "name": "Valente"},
+            {"id": "tt2380307", "name": "Viva! A Vida é uma Festa"},
+            {"id": "tt7146812", "name": "Dois Irmãos: Uma Jornada Fantástica"},
+            {"id": "tt2948372", "name": "Soul"},
+            {"id": "tt12801262", "name": "Luca"},
+            {"id": "tt8097030", "name": "Red: Crescer é uma Fera"},
+            {"id": "tt15789038", "name": "Elemental"}
+        ]
+    },
+
     # ── Pixar ──────────────────────────────────────────────────────────────
     "toystory_anim": {
         "name": "Toy Story",
@@ -591,21 +618,6 @@ ANIMATIONS = {
             {"id": "tt3606752", "name": "Carros 3"}
         ]
     },
-    "pixar_filmes": {
-        "name": "Pixar — Filmes Avulsos",
-        "items": [
-            {"id": "tt0382932", "name": "Ratatouille"},
-            {"id": "tt0910970", "name": "WALL-E"},
-            {"id": "tt1049413", "name": "UP: Altas Aventuras"},
-            {"id": "tt1217209", "name": "Valente"},
-            {"id": "tt2380307", "name": "Viva! A Vida é uma Festa"},
-            {"id": "tt7146812", "name": "Dois Irmãos: Uma Jornada Fantástica"},
-            {"id": "tt2948372", "name": "Soul"},
-            {"id": "tt12801262", "name": "Luca"},
-            {"id": "tt8097030", "name": "Red: Crescer é uma Fera"},
-            {"id": "tt15789038", "name": "Elemental"}
-        ]
-    },
     "inside_out": {
         "name": "Divertida Mente",
         "items": [
@@ -638,16 +650,6 @@ ANIMATIONS = {
             {"id": "tt33475149", "name": "Moana 2"}
         ]
     },
-    "disney_filmes": {
-        "name": "Disney — Filmes Avulsos",
-        "items": [
-            {"id": "tt2953050", "name": "Encanto"},
-            {"id": "tt5109280", "name": "Raya e o Último Dragão"},
-            {"id": "tt0780521", "name": "A Princesa e o Sapo"},
-            {"id": "tt0398286", "name": "Enrolados"},
-            {"id": "tt0034492", "name": "Bambi"}
-        ]
-    },
     "zootopia": {
         "name": "Zootopia",
         "items": [
@@ -655,7 +657,6 @@ ANIMATIONS = {
             {"id": "tt26443597", "name": "Zootopia 2"}
         ]
     },
-
     "liloestitch": {
         "name": "Lilo & Stitch",
         "items": [
@@ -671,8 +672,6 @@ ANIMATIONS = {
             {"id": "tt5848272", "name": "WiFi Ralph"}
         ]
     },
-
-
     "mulan_disney": {
         "name": "Mulan",
         "items": [
@@ -715,7 +714,6 @@ ANIMATIONS = {
             {"id": "tt3861390", "name": "Dumbo (2019)"}
         ]
     },
-
     "peter_pan": {
         "name": "Peter Pan",
         "items": [

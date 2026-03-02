@@ -13,7 +13,7 @@ POSTER_METAHUB_URL = "https://images.metahub.space/poster/medium/{}/img"
 
 # --- Cache calculado uma única vez na inicialização do servidor ---
 # Lista ordenada de nomes de sagas para o manifest (evita recalcular a cada request)
-SAGA_NAMES_SORTED = sorted(dados["name"] for dados in CATALOGS.values())
+SAGA_NAMES_SORTED = [dados["name"] for dados in CATALOGS.values()]
 
 # Índice de sagas por nome para busca O(1) (evita loop linear a cada seleção de gênero)
 CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
@@ -22,7 +22,7 @@ CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
 ALL_SAGAS = list(CATALOGS.values())
 
 # Cache equivalente para o catálogo de Animações Disney & Pixar
-ANIM_NAMES_SORTED = sorted(dados["name"] for dados in ANIMATIONS.values())
+ANIM_NAMES_SORTED = [dados["name"] for dados in ANIMATIONS.values()]
 ANIM_BY_NAME = {dados["name"]: dados for dados in ANIMATIONS.values()}
 ALL_ANIM = list(ANIMATIONS.values())
 
@@ -67,7 +67,7 @@ def addon_manifest():
 
     manifest = {
         "id": "br.cinemaratona.addon",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
         "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png",
@@ -90,7 +90,7 @@ def addon_manifest():
             {
                 "type": "movie",
                 "id": "cine_animacoes",
-                "name": "🎨 Animações Disney & Pixar",
+                "name": "Animações Disney & Pixar",
                 "extra": [
                     {
                         "name": EXTRA_NAME,
