@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
-from catalogs import CATALOGS
+from catalogs import CATALOGS, ANIMATIONS
 import urllib.parse
 import random
 
@@ -20,6 +20,11 @@ CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
 
 # Lista de todas as sagas para o sorteio aleatório da tela inicial
 ALL_SAGAS = list(CATALOGS.values())
+
+# Cache equivalente para o catálogo de Animações Disney & Pixar
+ANIM_NAMES_SORTED = sorted(dados["name"] for dados in ANIMATIONS.values())
+ANIM_BY_NAME = {dados["name"]: dados for dados in ANIMATIONS.values()}
+ALL_ANIM = list(ANIMATIONS.values())
 
 # Nome do campo extra — usa 'genre' (padrão oficial Stremio) para garantir compatibilidade de URL
 EXTRA_NAME = "genre"
@@ -62,7 +67,7 @@ def addon_manifest():
 
     manifest = {
         "id": "br.cinemaratona.addon",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "name": "CineMaratona BR 🎬",
         "description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio. Escolha suas franquias e listas favoritas usando o filtro superior!",
         "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png",
@@ -81,6 +86,19 @@ def addon_manifest():
                     }
                 ],
                 "extraSupported": [EXTRA_NAME]
+            },
+            {
+                "type": "movie",
+                "id": "cine_animacoes",
+                "name": "🎨 Animações Disney & Pixar",
+                "extra": [
+                    {
+                        "name": EXTRA_NAME,
+                        "isRequired": False,
+                        "options": ANIM_NAMES_SORTED
+                    }
+                ],
+                "extraSupported": [EXTRA_NAME]
             }
         ],
         "stremioAddonsConfig": {
@@ -95,14 +113,19 @@ def addon_manifest():
 def addon_catalog_default(media_type, catalog_id):
     """
     Esta rota de fallback é acionada caso o Stremio abra a aba pela primeira vez sem um <saga_param> na URL.
-    Ela carrega a primeira saga baseada na ordem alfabética.
+    Exibe uma seleção aleatória de sagas do catálogo correspondente.
     """
-    if media_type != "movie" or catalog_id != "cine_maratona":
+    if media_type != "movie":
         return respond_with({"metas": []})
-        
-    # Usar o cache pré-computado para sortear as sagas (sem recalcular a lista)
-    sagas_aleatorias = random.sample(ALL_SAGAS, min(15, len(ALL_SAGAS)))
-    
+
+    if catalog_id == "cine_maratona":
+        pool = ALL_SAGAS
+    elif catalog_id == "cine_animacoes":
+        pool = ALL_ANIM
+    else:
+        return respond_with({"metas": []})
+
+    sagas_aleatorias = random.sample(pool, min(15, len(pool)))
     lista_filmes = [saga["items"][0] for saga in sagas_aleatorias if saga["items"]]
 
     metas = []
@@ -113,23 +136,27 @@ def addon_catalog_default(media_type, catalog_id):
             "name": filme["name"],
             "poster": POSTER_METAHUB_URL.format(filme["id"])
         })
-        
+
     return respond_with({"metas": metas})
 
 @app.route("/catalog/<media_type>/<catalog_id>/genre=<saga_param>.json")
 def addon_catalog_com_extra(media_type, catalog_id, saga_param):
     """
     Rota chamada pelo Stremio quando o usuário seleciona uma saga específica no menu.
-    O param entra na URL no formato -> "genre=Alien%20..."
+    Funciona tanto para 'cine_maratona' quanto para 'cine_animacoes'.
     """
-    if media_type != "movie" or catalog_id != "cine_maratona":
+    if media_type != "movie":
         return respond_with({"metas": []})
-    
-    # Decodificar o nome da saga que vem na URL protegida
+
     saga_selecionada = urllib.parse.unquote(saga_param)
-    
-    # Busca O(1) usando o índice pré-calculado — sem loop
-    saga = CATALOG_BY_NAME.get(saga_selecionada)
+
+    if catalog_id == "cine_maratona":
+        saga = CATALOG_BY_NAME.get(saga_selecionada)
+    elif catalog_id == "cine_animacoes":
+        saga = ANIM_BY_NAME.get(saga_selecionada)
+    else:
+        return respond_with({"metas": []})
+
     lista_filmes = saga["items"] if saga else []
 
     metas = []
@@ -140,7 +167,7 @@ def addon_catalog_com_extra(media_type, catalog_id, saga_param):
             "name": filme["name"],
             "poster": POSTER_METAHUB_URL.format(filme["id"])
         })
-        
+
     return respond_with({"metas": metas})
 
 @app.route("/meta/movie/<imdb_id>.json")
