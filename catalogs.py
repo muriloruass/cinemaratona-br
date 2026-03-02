@@ -335,16 +335,6 @@ CATALOGS = {
             {"id": "tt3915174", "name": "Gato de Botas 2: O Último Pedido"}
         ]
     },
-    "toystory": {
-        "name": "Toy Story",
-        "items": [
-            {"id": "tt0114709", "name": "Toy Story"},
-            {"id": "tt0120363", "name": "Toy Story 2"},
-            {"id": "tt0435761", "name": "Toy Story 3"},
-            {"id": "tt1979376", "name": "Toy Story 4"},
-            {"id": "tt10298810", "name": "Lightyear"}
-        ]
-    },
     "meumalvadofavorito": {
         "name": "Meu Malvado Favorito",
         "items": [
@@ -666,7 +656,7 @@ ANIMATIONS = {
         ]
     },
     "wreck_it_ralph": {
-        "name": "WiFi Ralph",
+        "name": "Detona Ralph",
         "items": [
             {"id": "tt1772341", "name": "Detona Ralph"},
             {"id": "tt5848272", "name": "WiFi Ralph"}
