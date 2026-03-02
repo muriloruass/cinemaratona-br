@@ -633,7 +633,7 @@ ANIMATIONS = {
             {"id": "tt0110357", "name": "O Rei Leão (1994)"},
             {"id": "tt0120131", "name": "O Rei Leão 2: O Reino de Simba"},
             {"id": "tt6105098", "name": "O Rei Leão (2019)"},
-            {"id": "tt22675690", "name": "Mufasa: O Rei Leão"}
+            {"id": "tt13186482", "name": "Mufasa: O Rei Leão"}
         ]
     },
     "frozen": {
@@ -725,7 +725,8 @@ ANIMATIONS = {
         "name": "Pinóquio",
         "items": [
             {"id": "tt0032910", "name": "Pinóquio (1940)"},
-            {"id": "tt4566796", "name": "Pinóquio (2022)"}
+            {"id": "tt4593060", "name": "Pinóquio (2022 - Disney)"},
+            {"id": "tt1488589", "name": "Pinóquio (2022 - Guillermo del Toro)"}
         ]
     },
     "alicenopaisdasmaravilhas": {
