@@ -209,7 +209,7 @@ def build_manifest(config: dict) -> dict:
         "version": "2.0.0",
         "name": t(lang, "addon_name"),
         "description": t(lang, "addon_description"),
-        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png",
+        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/CineMaratonaLogo.png",
         "resources": ["catalog", "meta"],
         "types": ["movie", "series"],
         "catalogs": catalogs,
@@ -237,10 +237,10 @@ def ping():
     return "pong", 200
 
 
-@app.route("/cinemaratonaBR.png")
+@app.route("/CineMaratonaLogo.png")
 def addon_logo():
     """Serve a logo do addon diretamente."""
-    return send_file("cinemaratonaBR.png", mimetype="image/png")
+    return send_file("CineMaratonaLogo.png", mimetype="image/png")
 
 
 # ─── Manifest (com e sem userdata em Base64) ──────────────────────────────────

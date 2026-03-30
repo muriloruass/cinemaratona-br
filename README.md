@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/cinemaratonaBR.png" alt="CineMaratona Logo" width="150"/>
+  <img src="https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/CineMaratonaLogo.png" alt="CineMaratona Logo" width="150"/>
   <h1>CineMaratona</h1>
   <p><strong>Your ultimate Stremio catalog for chronological sagas, thematic movie marathons, and TV series.</strong></p>
 </div>
