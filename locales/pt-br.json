@@ -1,0 +1,31 @@
+{
+  "addon_name": "CineMaratona BR 🎬",
+  "addon_description": "Sagas e Maratonas organizadas cronologicamente com metadados em PT-BR para Stremio.",
+  "catalog_sagas": "Sagas e Maratonas",
+  "catalog_animations": "Animações Disney & Pixar",
+  "catalog_featured": "⭐ Em Destaque",
+  "categories": {
+    "marvel": "Universo Marvel (MCU)",
+    "dc": "Universo DC",
+    "007": "Saga 007 — James Bond",
+    "terror": "Maratonas de Terror",
+    "nolan": "Christopher Nolan",
+    "oscar": "Oscar 2026",
+    "destaque": "Em Destaque",
+    "animacoes": "Animações Disney & Pixar"
+  },
+  "configure": {
+    "title": "Configurar Addon",
+    "language_label": "Idioma:",
+    "categories_label": "Categorias visíveis:",
+    "generate_btn": "Gerar Link de Instalação",
+    "copy_label": "Copie e cole no Stremio:",
+    "install_btn": "Instalar no Stremio",
+    "install_note": "Ou adicione manualmente no Stremio → Addons → Community Addons → Paste URL"
+  },
+  "ui": {
+    "all": "Todas",
+    "movies": "Filmes",
+    "series": "Séries"
+  }
+}

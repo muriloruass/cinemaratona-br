@@ -20,7 +20,7 @@ CATALOGS = {
             {"id": "tt3896198", "name": "Guardiões da Galáxia Vol. 2"},
             {"id": "tt2395427", "name": "Vingadores: Era de Ultron"},
             {"id": "tt0478970", "name": "Homem-Formiga"},
-            {"id": "tt3696180", "name": "Capitão América: Guerra Civil"},
+            {"id": "tt3498820", "name": "Capitão América: Guerra Civil"},
             {"id": "tt2250912", "name": "Homem-Aranha: De Volta ao Lar"},
             {"id": "tt3480822", "name": "Viúva Negra"},
             {"id": "tt1825683", "name": "Pantera Negra"},
@@ -40,7 +40,7 @@ CATALOGS = {
             {"id": "tt6791350", "name": "Guardiões da Galáxia Vol. 3"},
             {"id": "tt10676048", "name": "As Marvels"},
             {"id": "tt6263850", "name": "Deadpool & Wolverine"},
-            {"id": "tt14511704", "name": "Capitão América: Admirável Mundo Novo"}
+            {"id": "tt14513804", "name": "Capitão América: Admirável Mundo Novo"}
         ]
     },
     "starwars": {
@@ -80,7 +80,7 @@ CATALOGS = {
     "007": {
         "name": "007 (James Bond)",
         "items": [
-            {"id": "tt0056346", "name": "007 - Contra o Satânico Dr. No"},
+            {"id": "tt0055928", "name": "007 - Contra o Satânico Dr. No"},
             {"id": "tt0057076", "name": "007 - Moscou Contra 007"},
             {"id": "tt0058150", "name": "007 - Contra Goldfinger"},
             {"id": "tt0059800", "name": "007 - Contra a Chantagem Atômica"},
@@ -89,11 +89,11 @@ CATALOGS = {
             {"id": "tt0066995", "name": "007 - Os Diamantes São Eternos"},
             {"id": "tt0070328", "name": "007 - Viva e Deixe Morrer"},
             {"id": "tt0071807", "name": "007 - Contra o Homem com a Pistola de Ouro"},
-            {"id": "tt0076336", "name": "007 - O Espião Que Me Amava"},
+            {"id": "tt0076752", "name": "007 - O Espião Que Me Amava"},
             {"id": "tt0079574", "name": "007 - Contra o Foguete da Morte"},
             {"id": "tt0082398", "name": "007 - Somente para Seus Olhos"},
             {"id": "tt0086034", "name": "007 - Contra Octopussy"},
-            {"id": "tt0088559", "name": "007 - Na Mira dos Assassinos"},
+            {"id": "tt0090334", "name": "007 - Na Mira dos Assassinos"},
             {"id": "tt0093428", "name": "007 - Marcado Para a Morte"},
             {"id": "tt0097742", "name": "007 - Permissão Para Matar"},
             {"id": "tt0113189", "name": "007 - Contra GoldenEye"},
@@ -387,16 +387,16 @@ CATALOGS = {
         "name": "Sexta-Feira 13",
         "items": [
             {"id": "tt0080761", "name": "Sexta-Feira 13"},
-            {"id": "tt2508618", "name": "Sexta-Feira 13 - Parte 2"},
+            {"id": "tt0082418", "name": "Sexta-Feira 13 - Parte 2"},
             {"id": "tt0083972", "name": "Sexta-Feira 13 - Parte 3"},
             {"id": "tt0087298", "name": "Sexta-Feira 13 - Parte 4: O Capítulo Final"},
             {"id": "tt0089173", "name": "Sexta-Feira 13 - Parte 5: Um Novo Começo"},
             {"id": "tt0091080", "name": "Sexta-Feira 13 - Parte 6: Jason Vive"},
             {"id": "tt0095179", "name": "Sexta-Feira 13 - Parte 7: A Matança Continua"},
             {"id": "tt0097388", "name": "Sexta-Feira 13 - Parte 8: Jason Ataca Nova York"},
-            {"id": "tt0123092", "name": "Jason Vai Para o Inferno: A Última Sexta-Feira"},
+            {"id": "tt0107254", "name": "Jason Vai Para o Inferno: A Última Sexta-Feira"},
             {"id": "tt0211443", "name": "Jason X"},
-            {"id": "tt0329030", "name": "Freddy x Jason"},
+            {"id": "tt0329101", "name": "Freddy x Jason"},
             {"id": "tt0758746", "name": "Sexta-Feira 13 (2009)"}
         ]
     },
@@ -485,7 +485,7 @@ CATALOGS = {
         "name": "Melhor de Christopher Nolan",
         "items": [
             {"id": "tt0209144", "name": "Amnésia"},
-            {"id": "tt0240772", "name": "Insônia"},
+            {"id": "tt0278504", "name": "Insônia"},
             {"id": "tt0372784", "name": "Batman Begins"},
             {"id": "tt0482571", "name": "O Grande Truque"},
             {"id": "tt0468569", "name": "Batman: O Cavaleiro das Trevas"},
@@ -516,10 +516,10 @@ CATALOGS = {
         "name": "Maratona Terror Halloween",
         "items": [
             {"id": "tt0077651", "name": "Halloween - A Noite do Terror"},
-            {"id": "tt27728888", "name": "Pânico"},
+            {"id": "tt0117571", "name": "Pânico"},
             {"id": "tt1457767", "name": "Invocação do Mal"},
             {"id": "tt0070047", "name": "O Exorcista"},
-            {"id": "tt1598778", "name": "A Entidade"}
+            {"id": "tt0083871", "name": "A Entidade"}
         ]
     },
     "comedias_br": {
@@ -734,6 +734,60 @@ ANIMATIONS = {
         "items": [
             {"id": "tt1587310", "name": "Malévola"},
             {"id": "tt4777008", "name": "Malévola: Dona do Mal"}
+        ]
+    }
+}
+
+# ---------------------------------------------------------------------------
+# 📺 SÉRIES — Maratonas de Séries (TV Shows)
+# ---------------------------------------------------------------------------
+SERIES = {
+    "dragonball_series": {
+        "name": "Dragon Ball (Ordem de Séries)",
+        "items": [
+            {"id": "tt0280249", "name": "Dragon Ball"},
+            {"id": "tt0214341", "name": "Dragon Ball Z"},
+            {"id": "tt0158421", "name": "Dragon Ball GT"},
+            {"id": "tt1409055", "name": "Dragon Ball Z Kai"},
+            {"id": "tt4644488", "name": "Dragon Ball Super"}
+        ]
+    },
+    "starwars_series": {
+        "name": "Star Wars (Séries)",
+        "items": [
+            {"id": "tt0458290", "name": "Star Wars: The Clone Wars"},
+            {"id": "tt2930604", "name": "Star Wars Rebels"},
+            {"id": "tt8111088", "name": "The Mandalorian"},
+            {"id": "tt11863692", "name": "Star Wars: The Bad Batch"},
+            {"id": "tt10443156", "name": "The Book of Boba Fett"},
+            {"id": "tt13156126", "name": "Obi-Wan Kenobi"},
+            {"id": "tt9253284", "name": "Andor"},
+            {"id": "tt13622776", "name": "Ahsoka"},
+            {"id": "tt10553738", "name": "The Acolyte"}
+        ]
+    },
+    "theboys": {
+        "name": "The Boys Universe",
+        "items": [
+            {"id": "tt1190634", "name": "The Boys"},
+            {"id": "tt13706018", "name": "Gen V"}
+        ]
+    },
+    "gameofthrones": {
+        "name": "Game of Thrones",
+        "items": [
+            {"id": "tt0944947", "name": "Game of Thrones"},
+            {"id": "tt11198330", "name": "A Casa do Dragão"}
+        ]
+    },
+    "walkingdead": {
+        "name": "The Walking Dead Universe",
+        "items": [
+            {"id": "tt1520211", "name": "The Walking Dead"},
+            {"id": "tt3743822", "name": "Fear the Walking Dead"},
+            {"id": "tt30825828", "name": "The Walking Dead: The Ones Who Live"},
+            {"id": "tt18779898", "name": "The Walking Dead: Daryl Dixon"},
+            {"id": "tt18546730", "name": "The Walking Dead: Dead City"}
         ]
     }
 }

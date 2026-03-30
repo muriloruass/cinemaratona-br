@@ -1,0 +1,20 @@
+{
+  "id": "destaque",
+  "title": "⭐ Maratona da Semana — Saga X-Men",
+  "updated_at": "2026-03-30",
+  "items": [
+    {"id": "tt0120903", "name": "X-Men: O Filme"},
+    {"id": "tt0290334", "name": "X-Men 2"},
+    {"id": "tt0376994", "name": "X-Men: O Confronto Final"},
+    {"id": "tt0458525", "name": "X-Men Origens: Wolverine"},
+    {"id": "tt1270798", "name": "X-Men: Primeira Classe"},
+    {"id": "tt1430132", "name": "Wolverine: Imortal"},
+    {"id": "tt1877832", "name": "X-Men: Dias de um Futuro Esquecido"},
+    {"id": "tt1431045", "name": "Deadpool"},
+    {"id": "tt3385516", "name": "X-Men: Apocalipse"},
+    {"id": "tt3315342", "name": "Logan"},
+    {"id": "tt5463162", "name": "Deadpool 2"},
+    {"id": "tt6565702", "name": "X-Men: Fênix Negra"},
+    {"id": "tt6263850", "name": "Deadpool & Wolverine"}
+  ]
+}
