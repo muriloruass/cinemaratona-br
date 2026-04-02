@@ -5,6 +5,7 @@ import urllib.parse
 from flask import Blueprint
 
 from catalogs import CATALOGS, ANIMATIONS, SERIES
+from data.config import EXTRA_NAME
 from utils.responses import respond_with, build_metas
 
 catalog_bp = Blueprint('catalog', __name__)
@@ -78,7 +79,7 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     # Fazer parsing da string `genre=marvel&skip=20` ou `search=Avatar`
     params = dict(urllib.parse.parse_qsl(extra_str))
     
-    saga_param = params.get("genre")
+    saga_param = params.get(EXTRA_NAME)
     search_param = params.get("search")
     
     try:

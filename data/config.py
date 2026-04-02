@@ -23,6 +23,9 @@ LOGO_URL = (
     "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/CineMaratonaLogo.png"
 )
 
+# Nome do campo 'extra' usado para filtrar gêneros/sagas no Stremio
+EXTRA_NAME = "genre"
+
 # ── Categorias disponíveis ────────────────────────────────────────────────────
 # Cada entrada contém:
 #   id        — chave que bate com as chaves de catalogs.py (CATALOGS/SERIES)

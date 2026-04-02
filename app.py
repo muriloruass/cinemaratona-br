@@ -9,6 +9,7 @@ from data.config import (
     POSTER_METAHUB_URL,
     AVAILABLE_CATEGORIES,
     DEFAULT_CATEGORIES,
+    EXTRA_NAME,
 )
 import urllib.parse
 import random
@@ -17,8 +18,9 @@ import base64
 import os
 
 from utils.i18n import t, safe_lang
+from utils.responses import respond_with
 
-from controllers.catalog import catalog_bp
+from controllers.catalog import catalog_bp, ANIM_NAMES_SORTED
 from controllers.meta import meta_bp
 
 app = Flask(__name__)
@@ -27,13 +29,6 @@ CORS(app)
 
 app.register_blueprint(catalog_bp)
 app.register_blueprint(meta_bp)
-
-def respond_with(data):
-    """Retorna respostas no formato JSON requerido pelo Stremio com headers CORS."""
-    response = jsonify(data)
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    return response
 
 
 def decode_config(config_b64: str) -> dict:
