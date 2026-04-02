@@ -1,78 +1,28 @@
 from flask import Flask, jsonify, request, send_file, redirect
 from flask_cors import CORS
 from catalogs import CATALOGS, ANIMATIONS, SERIES
+from data.config import (
+    ADDON_ID,
+    ADDON_VERSION,
+    BASE_URL,
+    LOGO_URL,
+    POSTER_METAHUB_URL,
+    AVAILABLE_CATEGORIES,
+    DEFAULT_CATEGORIES,
+)
 import urllib.parse
 import random
 import json
 import base64
 import os
-import sys
 
-# Adiciona utils/ ao path para imports locais
-sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from utils.i18n import t, safe_lang
 
 app = Flask(__name__)
 # Habilitar CORS para permitir que o Stremio se comunique com nossa API sem bloqueios
 CORS(app)
 
-# URL padrão e confiável para obter posters do Stremio via ID do IMDb
-POSTER_METAHUB_URL = "https://images.metahub.space/poster/medium/{}/img"
 
-# URL base do addon em produção
-BASE_URL = "https://cinemaratona-br.vercel.app"
-
-# Categorias disponíveis para filtro de usuário na página /configure
-AVAILABLE_CATEGORIES = [
-    {"id": "marvel",     "label_key": "categories.marvel"},
-    {"id": "starwars",   "label_key": None, "label": "Star Wars"},
-    {"id": "xmen",       "label_key": None, "label": "X-Men"},
-    {"id": "007",        "label_key": "categories.007"},
-    {"id": "missaoimpossivel", "label_key": None, "label": "Missão Impossível"},
-    {"id": "johnwick",   "label_key": None, "label": "John Wick"},
-    {"id": "bourne",     "label_key": None, "label": "Jason Bourne"},
-    {"id": "velozesefuriosos", "label_key": None, "label": "Velozes & Furiosos"},
-    {"id": "indianajones", "label_key": None, "label": "Indiana Jones"},
-    {"id": "jurassic",   "label_key": None, "label": "Jurassic Park & World"},
-    {"id": "planetadosmacacos", "label_key": None, "label": "Planeta dos Macacos"},
-    {"id": "exterminador", "label_key": None, "label": "O Exterminador do Futuro"},
-    {"id": "madmax",     "label_key": None, "label": "Mad Max"},
-    {"id": "rambo",      "label_key": None, "label": "Rambo"},
-    {"id": "rocky",      "label_key": None, "label": "Rocky & Creed"},
-    {"id": "senhordosaneis", "label_key": None, "label": "Senhor dos Anéis & O Hobbit"},
-    {"id": "startrek",   "label_key": None, "label": "Star Trek"},
-    {"id": "matrix",     "label_key": None, "label": "Matrix"},
-    {"id": "harrypotter", "label_key": None, "label": "Harry Potter"},
-    {"id": "animaisfantasticos", "label_key": None, "label": "Animais Fantásticos"},
-    {"id": "narnia",     "label_key": None, "label": "As Crônicas de Nárnia"},
-    {"id": "jogosvorazes", "label_key": None, "label": "Jogos Vorazes"},
-    {"id": "divergente", "label_key": None, "label": "Divergente"},
-    {"id": "shrek",      "label_key": None, "label": "Shrek & Gato de Botas"},
-    {"id": "meumalvadofavorito", "label_key": None, "label": "Meu Malvado Favorito"},
-    {"id": "transformers", "label_key": None, "label": "Transformers"},
-    {"id": "alien",      "label_key": None, "label": "Alien (Ordem Cronológica)"},
-    {"id": "predador",   "label_key": None, "label": "Predador"},
-    {"id": "sextafeira13", "label_key": None, "label": "Sexta-Feira 13"},
-    {"id": "horadopesadelo", "label_key": None, "label": "A Hora do Pesadelo"},
-    {"id": "poderosochefao", "label_key": None, "label": "O Poderoso Chefão"},
-    {"id": "piratasdocaribe", "label_key": None, "label": "Piratas do Caribe"},
-    {"id": "sherlockholmes", "label_key": None, "label": "Sherlock Holmes & Enola"},
-    {"id": "oscar2026",  "label_key": "categories.oscar", "label": "Oscar 2026: Melhor Filme"},
-    {"id": "oscar2026_intl", "label_key": None, "label": "Oscar 2026: Filme Internacional"},
-    {"id": "cinemanacional", "label_key": None, "label": "🇧🇷 Cinema Brasileiro"},
-    {"id": "nolan",      "label_key": "categories.nolan"},
-    {"id": "tarantino",  "label_key": None, "label": "Quentin Tarantino"},
-    {"id": "halloween",  "label_key": "categories.terror", "label": "Maratona Terror Halloween"},
-    {"id": "comedias_br", "label_key": None, "label": "Comédias Brasileiras"},
-    {"id": "dragonball_series", "label_key": None, "label": "Dragon Ball (Séries)"},
-    {"id": "starwars_series", "label_key": None, "label": "Star Wars (Séries)"},
-    {"id": "theboys", "label_key": None, "label": "The Boys Universe"},
-    {"id": "gameofthrones", "label_key": None, "label": "Game of Thrones"},
-    {"id": "walkingdead", "label_key": None, "label": "The Walking Dead Universe"},
-]
-
-# IDs padrão habilitados para novos usuários (todas as categorias)
-DEFAULT_CATEGORIES = [cat["id"] for cat in AVAILABLE_CATEGORIES]
 
 # --- Cache calculado uma única vez na inicialização do servidor ---
 SAGA_NAMES_SORTED = [dados["name"] for dados in CATALOGS.values()]
@@ -104,6 +54,22 @@ def respond_with(data):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "*"
     return response
+
+
+def build_metas(items: list, media_type: str) -> list:
+    """
+    Constrói a lista de metas no formato esperado pelo Stremio.
+    Centraliza a lógica usada por todos os handlers de catálogo.
+    """
+    return [
+        {
+            "id": item["id"],
+            "type": media_type,
+            "name": item["name"],
+            "poster": POSTER_METAHUB_URL.format(item["id"]),
+        }
+        for item in items
+    ]
 
 
 def decode_config(config_b64: str) -> dict:
@@ -205,11 +171,11 @@ def build_manifest(config: dict) -> dict:
     ]
 
     return {
-        "id": "br.cinemaratona.addon",
-        "version": "2.0.0",
+        "id": ADDON_ID,
+        "version": ADDON_VERSION,
         "name": t(lang, "addon_name"),
         "description": t(lang, "addon_description"),
-        "logo": "https://raw.githubusercontent.com/muriloruass/cinemaratona-br/main/CineMaratonaLogo.png",
+        "logo": LOGO_URL,
         "resources": ["catalog", "meta"],
         "types": ["movie", "series"],
         "catalogs": catalogs,
@@ -618,21 +584,14 @@ def configure_page():
 @app.route("/<config_b64>/catalog/movie/cine_destaque.json")
 def addon_catalog_destaque(config_b64=None):
     """Retorna o catálogo de destaque da semana."""
-    metas = []
-    for filme in DESTAQUE.get("items", []):
-        metas.append({
-            "id": filme["id"],
-            "type": "movie",
-            "name": filme["name"],
-            "poster": POSTER_METAHUB_URL.format(filme["id"])
-        })
-    return respond_with({"metas": metas})
+    return respond_with({"metas": build_metas(DESTAQUE.get("items", []), "movie")})
 
 
 # ─── Catálogos principais (padrão — sem saga selecionada) ────────────────────
 
-@app.route("/catalog/<media_type>/<catalog_id>.json")
-def addon_catalog_default(media_type, catalog_id):
+@app.route("/catalog/<media_type>/<catalog_id>.json", defaults={"config_b64": None})
+@app.route("/<config_b64>/catalog/<media_type>/<catalog_id>.json")
+def addon_catalog_default(config_b64, media_type, catalog_id):
     """
     Fallback acionado quando o Stremio abre a aba sem saga selecionada.
     Exibe uma seleção aleatória de sagas.
@@ -654,29 +613,15 @@ def addon_catalog_default(media_type, catalog_id):
     sagas_aleatorias = random.sample(pool, min(15, len(pool)))
     lista_filmes = [saga["items"][0] for saga in sagas_aleatorias if saga["items"]]
 
-    metas = []
-    for filme in lista_filmes:
-        metas.append({
-            "id": filme["id"],
-            "type": media_type,
-            "name": filme["name"],
-            "poster": POSTER_METAHUB_URL.format(filme["id"])
-        })
+    return respond_with({"metas": build_metas(lista_filmes, media_type)})
 
-
-    return respond_with({"metas": metas})
-
-
-@app.route("/<config_b64>/catalog/<media_type>/<catalog_id>.json")
-def addon_catalog_default_configured(config_b64, media_type, catalog_id):
-    """Versão com userdata do fallback de catálogo."""
-    return addon_catalog_default(media_type, catalog_id)
 
 
 # ─── Catálogos com saga selecionada / busca ─────────────────────────────────
 
-@app.route("/catalog/<media_type>/<catalog_id>/<extra_str>.json")
-def addon_catalog_com_extra(media_type, catalog_id, extra_str):
+@app.route("/catalog/<media_type>/<catalog_id>/<extra_str>.json", defaults={"config_b64": None})
+@app.route("/<config_b64>/catalog/<media_type>/<catalog_id>/<extra_str>.json")
+def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     """
     Rota chamada quando o usuário seleciona uma saga/série específica,
     ou realiza uma busca (search) ou paginação (skip).
@@ -731,22 +676,8 @@ def addon_catalog_com_extra(media_type, catalog_id, extra_str):
     # Retornamos os próximos 100 resultados.
     lista_itens = lista_itens[skip_param:skip_param+100]
 
-    metas = []
-    for item in lista_itens:
-        metas.append({
-            "id": item["id"],
-            "type": media_type,
-            "name": item["name"],
-            "poster": POSTER_METAHUB_URL.format(item["id"])
-        })
+    return respond_with({"metas": build_metas(lista_itens, media_type)})
 
-    return respond_with({"metas": metas})
-
-
-@app.route("/<config_b64>/catalog/<media_type>/<catalog_id>/<extra_str>.json")
-def addon_catalog_com_extra_configured(config_b64, media_type, catalog_id, extra_str):
-    """Versão com userdata do catálogo com saga selecionada ou busca."""
-    return addon_catalog_com_extra(media_type, catalog_id, extra_str)
 
 
 # ─── Meta stub ────────────────────────────────────────────────────────────────

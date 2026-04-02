@@ -23,15 +23,21 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           echo "🎬 Sincronizando sagas via TMDB API..."
-          python scripts/sync_saga.py "Marvel Cinematic Universe" mcu
-          python scripts/sync_saga.py "James Bond Collection" 007
-          python scripts/sync_saga.py "The Dark Knight Collection" batman-nolan
-          python scripts/sync_saga.py "Indiana Jones Collection" indiana-jones
-          python scripts/sync_saga.py "The Lord of the Rings Collection" lotr
-          python scripts/sync_saga.py "Star Wars Collection" star-wars
-          python scripts/sync_saga.py "Friday the 13th Collection" sexta-feira-13
-          python scripts/sync_saga.py "Mission: Impossible Collection" missao-impossivel
-          python scripts/sync_saga.py "John Wick Collection" john-wick
+          # Os nomes de saída DEVEM corresponder às chaves em catalogs.py (CATALOGS ou SERIES)
+          # para que o override loader em _apply_tmdb_overrides() faça o match corretamente.
+          python scripts/sync_saga.py "Marvel Cinematic Universe"          marvel
+          python scripts/sync_saga.py "James Bond Collection"              007
+          python scripts/sync_saga.py "The Dark Knight Collection"         nolan
+          python scripts/sync_saga.py "Indiana Jones Collection"           indianajones
+          python scripts/sync_saga.py "The Lord of the Rings Collection"   senhordosaneis
+          python scripts/sync_saga.py "Star Wars Collection"               starwars
+          python scripts/sync_saga.py "Friday the 13th Collection"         sextafeira13
+          python scripts/sync_saga.py "Mission: Impossible Collection"     missaoimpossivel
+          python scripts/sync_saga.py "John Wick Collection"               johnwick
+          python scripts/sync_saga.py "Jason Bourne Collection"            bourne
+          python scripts/sync_saga.py "Fast & Furious Collection"          velozesefuriosos
+          python scripts/sync_saga.py "Harry Potter Collection"            harrypotter
+          python scripts/sync_saga.py "The Matrix Collection"              matrix
           echo "✅ Sincronização concluída!"
 
       - name: Commit e push se houver mudanças

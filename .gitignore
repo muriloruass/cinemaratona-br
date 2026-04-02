@@ -1,3 +1,36 @@
+# ── Python ────────────────────────────────────────────────────────────────────
 venv/
+.venv/
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Variáveis de ambiente ─────────────────────────────────────────────────────
 .env
+.env.local
+.env.*.local
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Editores ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Dados gerados (sagas sincronizadas via TMDB — não commitar) ───────────────
+data/sagas/
+
+# ── Logs e temporários ────────────────────────────────────────────────────────
+*.log
+tmp/

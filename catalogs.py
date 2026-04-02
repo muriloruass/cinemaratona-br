@@ -1,5 +1,12 @@
 # catalogs.py - Base de dados de Sagas e Listas Especiais do CineMaratona BR
 # As listas estão organizadas por categorias e contêm o ID do IMDb (tt...) e o título em PT-BR.
+#
+# Os dados hardcoded aqui servem como fallback. Se existirem JSONs sincronizados via
+# TMDB em data/sagas/<chave>.json, eles sobrescrevem os itens do catálogo correspondente.
+
+import json
+import glob
+import os
 
 CATALOGS = {
     # 💥 Ação e Aventura
@@ -791,3 +798,55 @@ SERIES = {
         ]
     }
 }
+
+
+# ---------------------------------------------------------------------------
+# 🔄 TMDB Override Loader
+# Lê os JSONs gerados por scripts/sync_saga.py em data/sagas/<chave>.json e
+# sobrescreve os itens dos catálogos correspondentes com IDs atualizados.
+# Executado uma única vez na inicialização do módulo (import time).
+# ---------------------------------------------------------------------------
+
+def _apply_tmdb_overrides() -> None:
+    """
+    Varre data/sagas/ e, para cada arquivo <chave>.json encontrado,
+    substitui os itens do catálogo correspondente em CATALOGS ou SERIES.
+    ANIMATIONS não é sincronizado via TMDB (não são coleções de saga).
+
+    Formato esperado dos JSONs:
+        [{"id": "tt...", "name": "Título", "year": "2024", "type": "movie"}, ...]
+    """
+    sagas_dir = os.path.join(os.path.dirname(__file__), "data", "sagas")
+    if not os.path.isdir(sagas_dir):
+        return  # diretório ainda não foi criado (ambiente local sem sync)
+
+    for json_path in glob.glob(os.path.join(sagas_dir, "*.json")):
+        key = os.path.splitext(os.path.basename(json_path))[0]
+
+        target = None
+        if key in CATALOGS:
+            target = CATALOGS[key]
+        elif key in SERIES:
+            target = SERIES[key]
+
+        if target is None:
+            continue  # arquivo JSON sem catálogo correspondente — ignorar
+
+        try:
+            with open(json_path, encoding="utf-8") as f:
+                raw_items = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue  # JSON corrompido — manter dados hardcoded
+
+        # Normaliza para o formato interno {"id": ..., "name": ...}
+        normalized = [
+            {"id": item["id"], "name": item["name"]}
+            for item in raw_items
+            if isinstance(item, dict) and item.get("id") and item.get("name")
+        ]
+
+        if normalized:  # só substitui se o JSON tiver dados válidos
+            target["items"] = normalized
+
+
+_apply_tmdb_overrides()
