@@ -40,22 +40,34 @@ git clone https://github.com/muriloruass/cinemaratona-br.git
 cd cinemaratona-br
 ```
 
-### 2. Set up Virtual Environment
+### 2. Set up Virtual Environment & Install
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+make install
+```
+> This will automatically create a `venv` and install all required dependencies including `Flask`, `python-dotenv`, and `gunicorn`.
+
+### 3. Environment Variables (Optional)
+For local development, you can create a `.env` file in the root directory:
+```bash
+BASE_URL=http://127.0.0.1:7000
+TMDB_API_KEY=your_tmdb_key_here  # Only if you want to run the sync script
 ```
 
-### 3. Run the Server
+### 4. Run the Server
 ```bash
-python3 app.py
+make dev
 ```
 The server will start on `http://127.0.0.1:7000`. You can visit `http://127.0.0.1:7000/configure` to test the UI.
 
+### 5. Running Tests & Utilities
+- `make test`: Runs all unit tests to verify IMDB IDs, syntax, and poster URLs.
+- `make sync`: Runs the TMDB synchronization pipeline locally to refresh Marvel saga data (requires `TMDB_API_KEY`).
+
 ## 📁 Project Structure
 
-- `app.py`: The core Flask application handling routing, logic, UI rendering, and the manifest.
+- `app.py`: The core application registering routes and handling the manifest.
+- `controllers/`: Modular routing for `catalog` and `meta` (Blueprint pattern).
+- `data/config.py`: Centralized configuration variables.
 - `catalogs.py`: The database of movies and series categorized by saga.
 - `api/index.py`: Serverless entry point for Vercel deployment.
 - `locales/`: JSON dictionary files containing the translations (`en-us.json`, `pt-br.json`, `es.json`).

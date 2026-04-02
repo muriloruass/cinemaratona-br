@@ -4,6 +4,10 @@
 # Para sobrescrever em produção, defina as variáveis de ambiente correspondentes.
 
 import os
+from dotenv import load_dotenv
+
+# Carrega variáveis de ambiente do .env caso exista (para dev local)
+load_dotenv()
 
 # ── Metadados do Addon ────────────────────────────────────────────────────────
 ADDON_ID = "br.cinemaratona.addon"
