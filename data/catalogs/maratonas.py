@@ -21,7 +21,7 @@ MARATONAS = {
         CatalogItem("tt8169552", "Turma da Mônica: Laços", 2019),
         CatalogItem("tt9806192", "Turma da Mônica: Lições", 2021),
         CatalogItem("tt3742378", "Que Horas Ela Volta?", 2015),
-        CatalogItem("tt4077354", "Aquarius", 2016)
+        CatalogItem("tt5221584", "Aquarius", 2016)
     ],
     "nolan": [
         CatalogItem("tt0209144", "Amnésia", 2000),

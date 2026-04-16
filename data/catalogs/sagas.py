@@ -276,7 +276,7 @@ SAGAS = {
         CatalogItem("tt0091080", "Sexta-Feira 13 - Jason Vive", 1986, order=6),
         CatalogItem("tt0097388", "Sexta-Feira 13 - A Matança Continua", 1988, order=7),
         CatalogItem("tt0095179", "Sexta-Feira 13 - Parte VIII: Jason Ataca Nova York", 1989, order=8),
-        CatalogItem("tt0101438", "Jason Vai para o Inferno", 1993, order=9),
+        CatalogItem("tt0107254", "Jason Vai para o Inferno", 1993, order=9),
         CatalogItem("tt0211443", "Jason X", 2001, order=10),
         CatalogItem("tt0758746", "Sexta-Feira 13 (2009)", 2009, order=11)
     ],
@@ -335,6 +335,6 @@ SAGAS = {
         CatalogItem("tt4913966", "A Maldição da Chorona", 2019, order=6),
         CatalogItem("tt8350360", "Annabelle 3: De Volta para Casa", 2019, order=7),
         CatalogItem("tt7069210", "Invocação do Mal 3: A Ordem do Demônio", 2021, order=8),
-        CatalogItem("tt2386978", "A Freira 2", 2023, order=9)
+        CatalogItem("tt10160976", "A Freira 2", 2023, order=9)
     ]
 }
