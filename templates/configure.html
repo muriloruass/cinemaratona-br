@@ -228,7 +228,7 @@
             {{ group.name }}
           </h3>
           <div class="categories-grid">
-            {% for cat in group.items %}
+            {% for cat in group['items'] %}
             <div class="category-item">
               <label>
                 <input type="checkbox" value="{{ cat.id }}" checked>
