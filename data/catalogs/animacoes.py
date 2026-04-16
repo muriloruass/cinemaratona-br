@@ -7,13 +7,22 @@ ANIMACOES = {
         CatalogItem("tt5109280", "Raya e o Último Dragão", 2021),
         CatalogItem("tt0780521", "A Princesa e o Sapo", 2009),
         CatalogItem("tt0398286", "Enrolados", 2010),
-        CatalogItem("tt0034492", "Bambi", 1942)
+        CatalogItem("tt0034492", "Bambi", 1942),
+        CatalogItem("tt2245084", "Operação Big Hero", 2014),
+        CatalogItem("tt5027774", "Mundo Estranho", 2022),
+        CatalogItem("tt11304740", "Wish: O Poder dos Desejos", 2023),
+        CatalogItem("tt0396555", "A Família do Futuro", 2007),
+        CatalogItem("tt0397892", "Bolt: Supercão", 2008)
     ],
     "pixar_filmes": [
+        CatalogItem("tt0114709", "Toy Story", 1995),
+        CatalogItem("tt0120623", "Vida de Inseto", 1998),
         CatalogItem("tt0382932", "Ratatouille", 2007),
         CatalogItem("tt0910970", "WALL-E", 2008),
         CatalogItem("tt1049413", "UP: Altas Aventuras", 2009),
         CatalogItem("tt1217209", "Valente", 2012),
+        CatalogItem("tt1691917", "Universidade Monstros", 2013),
+        CatalogItem("tt1979388", "O Bom Dinossauro", 2015),
         CatalogItem("tt2380307", "Viva! A Vida é uma Festa", 2017),
         CatalogItem("tt7146812", "Dois Irmãos: Uma Jornada Fantástica", 2020),
         CatalogItem("tt2948372", "Soul", 2020),

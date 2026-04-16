@@ -3,13 +3,25 @@ from ._base import CatalogItem
 # Maratonas Temáticas Curatoriais
 MARATONAS = {
     "cinemanacional": [
+        CatalogItem("tt0317248", "Cidade de Deus", 2002),
+        CatalogItem("tt0861739", "Tropa de Elite", 2007),
+        CatalogItem("tt1555149", "Tropa de Elite 2", 2010),
+        CatalogItem("tt1827487", "O Palhaço", 2011),
+        CatalogItem("tt0082106", "Eles Não Usam Black-Tie", 1981),
+        CatalogItem("tt0140888", "Central do Brasil", 1998),
+        CatalogItem("tt0110216", "Carlota Joaquina, Princesa do Brazil", 1995),
+        CatalogItem("tt0201663", "O Auto da Compadecida", 2000),
+        CatalogItem("tt0159310", "O Quatrilho", 1995),
         CatalogItem("tt14961016", "Ainda Estou Aqui", 2024),
         CatalogItem("tt27847051", "O Agente Secreto", 2025),
         CatalogItem("tt28696532", "O Auto da Compadecida 2", 2024),
         CatalogItem("tt28497675", "Maníaco do Parque", 2024),
         CatalogItem("tt2762506", "Bacurau", 2019),
         CatalogItem("tt7825208", "Marighella", 2019),
-        CatalogItem("tt8169552", "Turma da Mônica: Laços", 2019)
+        CatalogItem("tt8169552", "Turma da Mônica: Laços", 2019),
+        CatalogItem("tt9806192", "Turma da Mônica: Lições", 2021),
+        CatalogItem("tt3742378", "Que Horas Ela Volta?", 2015),
+        CatalogItem("tt4077354", "Aquarius", 2016)
     ],
     "nolan": [
         CatalogItem("tt0209144", "Amnésia", 2000),
@@ -36,19 +48,22 @@ MARATONAS = {
         CatalogItem("tt3460252", "Os Oito Odiados", 2015),
         CatalogItem("tt7131622", "Era Uma Vez em... Hollywood", 2019)
     ],
-    "halloween": [
-        CatalogItem("tt0077651", "Halloween - A Noite do Terror", 1978),
-        CatalogItem("tt0117571", "Pânico", 1996),
-        CatalogItem("tt1457767", "Invocação do Mal", 2013),
-        CatalogItem("tt0070047", "O Exorcista", 1973),
-        CatalogItem("tt0083871", "A Entidade", 2012)
-    ],
-    "comedias_br": [
-        CatalogItem("tt2464018", "Minha Mãe é uma Peça: O Filme", 2013),
-        CatalogItem("tt3212812", "Minha Mãe é uma Peça 2", 2016),
-        CatalogItem("tt10611372", "Minha Mãe é uma Peça 3", 2019),
-        CatalogItem("tt0271383", "O Auto da Compadecida", 2000),
-        CatalogItem("tt0478198", "Se Eu Fosse Você", 2006),
-        CatalogItem("tt1099227", "Se Eu Fosse Você 2", 2009)
+    "terror_avulsos": [
+        CatalogItem("tt0081505", "O Iluminado", 1980),
+        CatalogItem("tt0102926", "O Silêncio dos Inocentes", 1991),
+        CatalogItem("tt0435625", "A Descida", 2005),
+        CatalogItem("tt0063350", "A Noite dos Mortos-Vivos", 1968),
+        CatalogItem("tt0072271", "O Massacre da Serra Elétrica", 1974),
+        CatalogItem("tt0391198", "O Extermínio", 2002),
+        CatalogItem("tt0387564", "Jogos Mortais", 2004),
+        CatalogItem("tt1179904", "Atividade Paranormal", 2007),
+        CatalogItem("tt0098669", "Brinquedo Assassino", 1988),
+        CatalogItem("tt0089173", "Hellraiser", 1987),
+        CatalogItem("tt1591095", "Insidious", 2010),
+        CatalogItem("tt0433383", "Anjos da Noite", 2003),
+        CatalogItem("tt4589218", "Terrifier", 2016),
+        CatalogItem("tt2184339", "Uma Noite de Crime", 2013),
+        CatalogItem("tt0175142", "Todo Mundo em Pânico", 2000),
+        CatalogItem("tt0083907", "A Morte do Demônio", 1981)
     ]
 }

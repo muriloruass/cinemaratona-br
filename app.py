@@ -15,14 +15,13 @@ import json
 import base64
 import os
 
-from utils.i18n import t, safe_lang
+from utils.i18n import t, safe_lang, category_label, get_locale, SUPPORTED_LANGS
 from utils.responses import respond_with
 
 from controllers.catalog import catalog_bp
 from controllers.meta import meta_bp
 
-# Mapeamento rápido de IDs para Labels (usado no manifest para opções de gênero)
-SAGA_LABELS = {cat["id"]: cat["label"] for cat in AVAILABLE_CATEGORIES}
+CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
 
 def create_app(testing=False):
     app = Flask(__name__)
@@ -58,7 +57,7 @@ def create_app(testing=False):
         def get_options_for_group(group_id):
             ids = CATALOG_GROUPS.get(group_id, [])
             return [
-                SAGA_LABELS.get(sid, sid) 
+                category_label(lang, sid, CATEGORY_BY_ID.get(sid, {}).get("label", sid))
                 for sid in ids 
                 if sid in active_cats or group_id in ["cine_sagas_animacoes", "cine_especiais"]
             ]
@@ -132,11 +131,12 @@ def create_app(testing=False):
 
     @app.route("/configure")
     def configure_page():
+        default_lang = "pt-br"
         groups = {
-            "filmes": {"name": "🎬 Sagas de Filmes", "items": []},
-            "series": {"name": "📺 Sagas de Séries", "items": []},
-            "animacoes": {"name": "✨ Sagas de Animações", "items": []},
-            "especiais": {"name": "⭐ Coleções Especiais", "items": []}
+            "filmes": {"name": t(default_lang, "catalog_sagas_filmes"), "items": []},
+            "series": {"name": t(default_lang, "catalog_sagas_series"), "items": []},
+            "animacoes": {"name": t(default_lang, "catalog_sagas_animacoes"), "items": []},
+            "especiais": {"name": t(default_lang, "catalog_especiais"), "items": []}
         }
         id_to_group = {}
         for gid, ids in CATALOG_GROUPS.items():
@@ -148,9 +148,20 @@ def create_app(testing=False):
 
         for cat in AVAILABLE_CATEGORIES:
             gkey = id_to_group.get(cat["id"], "especiais")
-            groups[gkey]["items"].append(cat)
+            groups[gkey]["items"].append({
+                **cat,
+                "label": category_label(default_lang, cat["id"], cat["label"])
+            })
 
-        return render_template("configure.html", groups=groups, base_url=BASE_URL)
+        locales_payload = {lang: get_locale(lang) for lang in SUPPORTED_LANGS}
+
+        return render_template(
+            "configure.html",
+            groups=groups,
+            base_url=BASE_URL,
+            locales_payload=locales_payload,
+            supported_langs=SUPPORTED_LANGS,
+        )
 
     return app
 

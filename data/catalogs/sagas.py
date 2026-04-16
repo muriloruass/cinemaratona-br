@@ -220,5 +220,121 @@ SAGAS = {
         CatalogItem("tt5463162", "Deadpool 2", 2018),
         CatalogItem("tt6565702", "X-Men: Fênix Negra", 2019),
         CatalogItem("tt4682266", "Os Novos Mutantes", 2020)
+    ],
+    "matrix": [
+        CatalogItem("tt0133093", "Matrix", 1999, order=1),
+        CatalogItem("tt0234215", "Matrix Reloaded", 2003, order=2),
+        CatalogItem("tt0242653", "Matrix Revolutions", 2003, order=3),
+        CatalogItem("tt10838180", "Matrix Resurrections", 2021, order=4)
+    ],
+    "predador": [
+        CatalogItem("tt0093773", "O Predador", 1987, order=1),
+        CatalogItem("tt0093894", "Predador 2", 1990, order=2),
+        CatalogItem("tt0110950", "Predadores", 2010, order=3),
+        CatalogItem("tt3829266", "O Predador", 2018, order=4),
+        CatalogItem("tt11866324", "Predador: A Caçada", 2022, order=5)
+    ],
+    "narnia": [
+        CatalogItem("tt0363771", "As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa", 2005, order=1),
+        CatalogItem("tt0499448", "As Crônicas de Nárnia: Príncipe Caspian", 2008, order=2),
+        CatalogItem("tt0980970", "As Crônicas de Nárnia: A Viagem do Peregrino da Alvorada", 2010, order=3)
+    ],
+    "jogosvorazes": [
+        CatalogItem("tt1392170", "Jogos Vorazes", 2012, order=1),
+        CatalogItem("tt1951264", "Jogos Vorazes: Em Chamas", 2013, order=2),
+        CatalogItem("tt1951265", "Jogos Vorazes: A Esperança - Parte 1", 2014, order=3),
+        CatalogItem("tt1951266", "Jogos Vorazes: A Esperança - O Final", 2015, order=4),
+        CatalogItem("tt10545296", "Jogos Vorazes: A Cantiga dos Pássaros e das Serpentes", 2023, order=5)
+    ],
+    "divergente": [
+        CatalogItem("tt1840309", "Divergente", 2014, order=1),
+        CatalogItem("tt2404233", "A Série Divergente: Insurgente", 2015, order=2),
+        CatalogItem("tt3410834", "A Série Divergente: Convergente", 2016, order=3)
+    ],
+    "shrek": [
+        CatalogItem("tt0126029", "Shrek", 2001, order=1),
+        CatalogItem("tt0298148", "Shrek 2", 2004, order=2),
+        CatalogItem("tt0413267", "Shrek Terceiro", 2007, order=3),
+        CatalogItem("tt0892791", "Shrek Para Sempre", 2010, order=4),
+        CatalogItem("tt0448694", "Gato de Botas", 2011, order=5),
+        CatalogItem("tt3915174", "Gato de Botas 2: O Último Pedido", 2022, order=6)
+    ],
+    "meumalvadofavorito": [
+        CatalogItem("tt1323594", "Meu Malvado Favorito", 2010, order=1),
+        CatalogItem("tt1690953", "Meu Malvado Favorito 2", 2013, order=2),
+        CatalogItem("tt2293640", "Minions", 2015, order=3),
+        CatalogItem("tt3469046", "Meu Malvado Favorito 3", 2017, order=4),
+        CatalogItem("tt5113044", "Minions 2: A Origem de Gru", 2022, order=5),
+        CatalogItem("tt7510222", "Meu Malvado Favorito 4", 2024, order=6)
+    ],
+    "sextafeira13": [
+        CatalogItem("tt0080761", "Sexta-Feira 13", 1980, order=1),
+        CatalogItem("tt0082418", "Sexta-Feira 13 - Parte 2", 1981, order=2),
+        CatalogItem("tt0083972", "Sexta-Feira 13 - Parte 3", 1982, order=3),
+        CatalogItem("tt0087298", "Sexta-Feira 13 - Capítulo Final", 1984, order=4),
+        CatalogItem("tt0089175", "Sexta-Feira 13 - Um Novo Começo", 1985, order=5),
+        CatalogItem("tt0091080", "Sexta-Feira 13 - Jason Vive", 1986, order=6),
+        CatalogItem("tt0097388", "Sexta-Feira 13 - A Matança Continua", 1988, order=7),
+        CatalogItem("tt0095179", "Sexta-Feira 13 - Parte VIII: Jason Ataca Nova York", 1989, order=8),
+        CatalogItem("tt0101438", "Jason Vai para o Inferno", 1993, order=9),
+        CatalogItem("tt0211443", "Jason X", 2001, order=10),
+        CatalogItem("tt0758746", "Sexta-Feira 13 (2009)", 2009, order=11)
+    ],
+    "horadopesadelo": [
+        CatalogItem("tt0087800", "A Hora do Pesadelo", 1984, order=1),
+        CatalogItem("tt0089686", "A Hora do Pesadelo 2: A Vingança de Freddy", 1985, order=2),
+        CatalogItem("tt0093629", "A Hora do Pesadelo 3: Guerreiros dos Sonhos", 1987, order=3),
+        CatalogItem("tt0095742", "A Hora do Pesadelo 4: O Mestre dos Sonhos", 1988, order=4),
+        CatalogItem("tt0097981", "A Hora do Pesadelo 5: O Maior Horror de Freddy", 1989, order=5),
+        CatalogItem("tt0101917", "A Hora do Pesadelo 6: Pesadelo Final", 1991, order=6),
+        CatalogItem("tt0106308", "O Novo Pesadelo: O Retorno de Freddy Krueger", 1994, order=7),
+        CatalogItem("tt1179056", "A Hora do Pesadelo (2010)", 2010, order=8)
+    ],
+    "sherlockholmes": [
+        CatalogItem("tt0988045", "Sherlock Holmes", 2009, order=1),
+        CatalogItem("tt1515091", "Sherlock Holmes: O Jogo de Sombras", 2011, order=2),
+        CatalogItem("tt7846844", "Enola Holmes", 2020, order=3),
+        CatalogItem("tt14641788", "Enola Holmes 2", 2022, order=4)
+    ],
+    "halloween": [
+        CatalogItem("tt0077651", "Halloween - A Noite do Terror", 1978, order=1),
+        CatalogItem("tt0082495", "Halloween II - O Pesadelo Continua", 1981, order=2),
+        CatalogItem("tt0085636", "Halloween III: A Noite das Bruxas", 1982, order=3),
+        CatalogItem("tt0095271", "Halloween 4: O Retorno de Michael Myers", 1988, order=4),
+        CatalogItem("tt0097474", "Halloween 5: A Vingança de Michael Myers", 1989, order=5),
+        CatalogItem("tt0102004", "Halloween 6: A Última Vingança", 1995, order=6),
+        CatalogItem("tt0120694", "Halloween H20: 20 Anos Depois", 1998, order=7),
+        CatalogItem("tt0220506", "Halloween: Ressurreição", 2002, order=8),
+        CatalogItem("tt0373883", "Halloween - O Início", 2007, order=9),
+        CatalogItem("tt1502407", "Halloween II (2009)", 2009, order=10),
+        CatalogItem("tt1502404", "Halloween (2018)", 2018, order=11),
+        CatalogItem("tt10665338", "Halloween Kills: O Terror Continua", 2021, order=12),
+        CatalogItem("tt10665342", "Halloween Ends", 2022, order=13)
+    ],
+    "panico": [
+        CatalogItem("tt0117571", "Pânico", 1996, order=1),
+        CatalogItem("tt0120082", "Pânico 2", 1997, order=2),
+        CatalogItem("tt0134084", "Pânico 3", 2000, order=3),
+        CatalogItem("tt1262416", "Pânico 4", 2011, order=4),
+        CatalogItem("tt11245972", "Pânico (2022)", 2022, order=5),
+        CatalogItem("tt17663992", "Pânico VI", 2023, order=6)
+    ],
+    "premonicao": [
+        CatalogItem("tt0195714", "Premonição", 2000, order=1),
+        CatalogItem("tt0309593", "Premonição 2", 2003, order=2),
+        CatalogItem("tt0414982", "Premonição 3", 2006, order=3),
+        CatalogItem("tt1144884", "Premonição 4", 2009, order=4),
+        CatalogItem("tt1622979", "Premonição 5", 2011, order=5)
+    ],
+    "invocacaodomal": [
+        CatalogItem("tt1457767", "Invocação do Mal", 2013, order=1),
+        CatalogItem("tt3322940", "Annabelle", 2014, order=2),
+        CatalogItem("tt3065204", "Invocação do Mal 2", 2016, order=3),
+        CatalogItem("tt5140878", "Annabelle 2: A Criação do Mal", 2017, order=4),
+        CatalogItem("tt5814060", "A Freira", 2018, order=5),
+        CatalogItem("tt4913966", "A Maldição da Chorona", 2019, order=6),
+        CatalogItem("tt8350360", "Annabelle 3: De Volta para Casa", 2019, order=7),
+        CatalogItem("tt7069210", "Invocação do Mal 3: A Ordem do Demônio", 2021, order=8),
+        CatalogItem("tt2386978", "A Freira 2", 2023, order=9)
     ]
 }

@@ -24,7 +24,10 @@ CATALOG_GROUPS = {
     "cine_sagas_filmes": [
         "marvel", "starwars", "harrypotter", "senhordosaneis", 
         "007", "missaoimpossivel", "johnwick", "velozesefuriosos", 
-        "jurassic", "rocky", "matrix", "piratasdocaribe", "transformers"
+        "jurassic", "rocky", "matrix", "piratasdocaribe", "transformers",
+        "alien", "xmen", "indianajones", "planetadosmacacos", "rambo",
+        "narnia", "poderosochefao", "halloween", "horadopesadelo",
+        "sextafeira13", "panico", "premonicao", "invocacaodomal"
     ],
     "cine_sagas_series": [
         "dragonball_series", "starwars_series", "theboys", 
@@ -35,15 +38,13 @@ CATALOG_GROUPS = {
         "monstros", "osincrivel", "carros", "inside_out", "leao", "frozen", 
         "moana", "zootopia", "liloestitch", "wreck_it_ralph", "mulan_disney", 
         "aladdin_disney", "cinderela_disney", "bela_fera", "pequena_sereia", 
-        "dumbo", "peter_pan", "pinoquio", "alicenopaisdasmaravilhas", "malefica"
+        "dumbo", "peter_pan", "pinoquio", "alicenopaisdasmaravilhas", "malefica",
+        "shrek", "meumalvadofavorito"
     ],
     "cine_especiais": [
-        "nolan", "tarantino", "cinemanacional", "halloween", "comedias_br", 
-        "alien", "predador", "xmen", "bourne", "indianajones", 
-        "planetadosmacacos", "exterminador", "madmax", "rambo", 
-        "narnia", "jogosvorazes", "divergente", "shrek", 
-        "meumalvadofavorito", "sextafeira13", "horadopesadelo", 
-        "poderosochefao", "sherlockholmes", "animaisfantasticos"
+        "nolan", "tarantino", "cinemanacional", "terror_avulsos",
+        "predador", "bourne", "exterminador", "madmax",
+        "jogosvorazes", "divergente", "sherlockholmes", "animaisfantasticos"
     ]
 }
 

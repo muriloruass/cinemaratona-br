@@ -6,7 +6,7 @@ import json
 import os
 import functools
 
-SUPPORTED_LANGS = ['pt-br', 'en-us', 'es']
+SUPPORTED_LANGS = ['pt-br', 'en-us', 'es', 'fr']
 DEFAULT_LANG = 'pt-br'
 
 # Caminho para a pasta locales (relativo ao diretório pai deste arquivo)
@@ -28,13 +28,18 @@ def _load_locale(lang: str) -> dict:
         return {}
 
 
+def get_locale(lang: str) -> dict:
+    """Retorna o payload de locale para um idioma válido com fallback."""
+    return _load_locale(lang if lang in SUPPORTED_LANGS else DEFAULT_LANG)
+
+
 def t(lang: str, key: str) -> str:
     """
     Retorna a string traduzida para o idioma especificado.
     Suporta dot-notation para chaves aninhadas (ex: 'configure.title').
     Se a chave não existir, retorna a própria chave como fallback.
     """
-    locale = _load_locale(lang if lang in SUPPORTED_LANGS else DEFAULT_LANG)
+    locale = get_locale(lang)
     parts = key.split('.')
     value = locale
     for part in parts:
@@ -51,3 +56,15 @@ def safe_lang(lang: str) -> str:
         return DEFAULT_LANG
     normalized = lang.lower().strip()
     return normalized if normalized in SUPPORTED_LANGS else DEFAULT_LANG
+
+
+def category_label(lang: str, category_id: str, fallback: str) -> str:
+    """Resolve o rótulo traduzido de uma categoria pelo ID."""
+    value = t(lang, f"catalog_ids.{category_id}")
+    return fallback if value == f"catalog_ids.{category_id}" else value
+
+
+def title_label(lang: str, imdb_id: str, fallback: str) -> str:
+    """Resolve o título traduzido de um item pelo IMDb ID."""
+    value = t(lang, f"titles.{imdb_id}")
+    return fallback if value == f"titles.{imdb_id}" else value

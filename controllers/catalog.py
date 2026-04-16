@@ -2,6 +2,7 @@ import os
 import json
 import random
 import urllib.parse
+import base64
 from flask import Blueprint
 
 from data.catalogs import get_catalog, CATALOG_GROUPS, ALL_CATALOGS
@@ -9,17 +10,49 @@ from data.catalogs._base import to_meta
 from data.config import EXTRA_NAME, POSTER_METAHUB_URL
 from utils.responses import respond_with
 from utils.logger import log_request
+from utils.i18n import safe_lang, category_label, title_label
 
 catalog_bp = Blueprint('catalog', __name__)
 
-# Mapeamento reverso de labels para IDs de saga (para processar o filtro 'genre')
-# Carregado na inicialização para performance
 from data.config import AVAILABLE_CATEGORIES
-LABEL_TO_ID = {cat["label"]: cat["id"] for cat in AVAILABLE_CATEGORIES}
+CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
 
-def build_metas_modular(items, media_type):
+
+def decode_config(config_b64: str) -> dict:
+    default = {"lang": "pt-br", "categories": []}
+    if not config_b64:
+        return default
+    try:
+        decoded = base64.b64decode(config_b64 + "==").decode("utf-8")
+        cfg = json.loads(decoded)
+        if not isinstance(cfg, dict):
+            return default
+        return {
+            "lang": safe_lang(cfg.get("lang", "pt-br")),
+            "categories": cfg.get("categories", []),
+        }
+    except Exception:
+        return default
+
+
+def build_label_lookup(lang: str) -> dict:
+    lookup = {}
+    for cat in AVAILABLE_CATEGORIES:
+        label = category_label(lang, cat["id"], cat["label"])
+        lookup[label] = cat["id"]
+        lookup[cat["label"]] = cat["id"]
+    return lookup
+
+def build_metas_modular(items, media_type, lang="pt-br"):
     """Converte lista de CatalogItem para formato Stremio metas."""
-    return [to_meta(item, POSTER_METAHUB_URL) for item in items if item.type == media_type]
+    metas = []
+    for item in items:
+        if item.type != media_type:
+            continue
+        meta = to_meta(item, POSTER_METAHUB_URL)
+        meta["name"] = title_label(lang, item.id, item.name)
+        metas.append(meta)
+    return metas
 
 from utils.cache import cache_get, cache_set
 
@@ -35,6 +68,9 @@ def addon_catalog_default(config_b64, media_type, catalog_id):
     cached = cache_get(cache_key)
     if cached:
         return respond_with(cached)
+
+    config = decode_config(config_b64)
+    lang = config.get("lang", "pt-br")
 
     if catalog_id not in CATALOG_GROUPS:
         return respond_with({"metas": []})
@@ -59,7 +95,7 @@ def addon_catalog_default(config_b64, media_type, catalog_id):
     sample_size = min(20, len(preview_items))
     selected = random.sample(preview_items, sample_size)
 
-    result = {"metas": build_metas_modular(selected, media_type)}
+    result = {"metas": build_metas_modular(selected, media_type, lang=lang)}
     cache_set(cache_key, result)
     return respond_with(result)
 
@@ -76,6 +112,10 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     cached = cache_get(cache_key)
     if cached:
         return respond_with(cached)
+
+    config = decode_config(config_b64)
+    lang = config.get("lang", "pt-br")
+    label_to_id = build_label_lookup(lang)
 
     if catalog_id not in CATALOG_GROUPS:
         return respond_with({"metas": []})
@@ -104,7 +144,7 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
                     
     # 2. Filtro por Saga (genre)
     elif saga_label:
-        saga_id = LABEL_TO_ID.get(saga_label, saga_label)
+        saga_id = label_to_id.get(saga_label, saga_label)
         lista_itens = get_catalog(saga_id)
 
     # 3. Fallback se não houver extra (não deveria cair aqui pela lógica das rotas, mas por segurança)
@@ -117,6 +157,6 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     # 4. Paginação (skip)
     lista_itens = lista_itens[skip_param:skip_param+100]
 
-    result = {"metas": build_metas_modular(lista_itens, media_type)}
+    result = {"metas": build_metas_modular(lista_itens, media_type, lang=lang)}
     cache_set(cache_key, result)
     return respond_with(result)
