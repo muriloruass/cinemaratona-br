@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request, send_file, redirect
 from flask_cors import CORS
-from catalogs import CATALOGS, ANIMATIONS, SERIES
+from data.catalogs import CATALOG_GROUPS
 from data.config import (
     ADDON_ID,
     ADDON_VERSION,
@@ -20,7 +20,7 @@ import os
 from utils.i18n import t, safe_lang
 from utils.responses import respond_with
 
-from controllers.catalog import catalog_bp, ANIM_NAMES_SORTED
+from controllers.catalog import catalog_bp
 from controllers.meta import meta_bp
 
 app = Flask(__name__)
@@ -29,6 +29,9 @@ CORS(app)
 
 app.register_blueprint(catalog_bp)
 app.register_blueprint(meta_bp)
+
+# Mapeamento rápido de IDs para Labels (usado no manifest para opções de gênero)
+SAGA_LABELS = {cat["id"]: cat["label"] for cat in AVAILABLE_CATEGORIES}
 
 
 def decode_config(config_b64: str) -> dict:
@@ -59,75 +62,43 @@ def build_manifest(config: dict) -> dict:
     lang = config.get("lang", "pt-br")
     active_cats = set(config.get("categories", DEFAULT_CATEGORIES))
 
-    # Filtrar sagas disponíveis com base nas categorias ativas
-    filtered_saga_names = [
-        dados["name"]
-        for key, dados in CATALOGS.items()
-        if key in active_cats
-    ]
-    filtered_series_names = [
-        dados["name"]
-        for key, dados in SERIES.items()
-        if key in active_cats
-    ]
-    filtered_anim_names = ANIM_NAMES_SORTED  # animações sempre disponíveis
+    def get_options_for_group(group_id):
+        ids = CATALOG_GROUPS.get(group_id, [])
+        return [
+            SAGA_LABELS.get(sid, sid) 
+            for sid in ids 
+            if sid in active_cats or group_id in ["cine_animacoes", "cine_maratonas"]
+        ]
 
-    catalogs = [
-        # Catálogo de destaque (sempre primeiro)
-        {
-            "type": "movie",
-            "id": "cine_destaque",
-            "name": t(lang, "catalog_featured"),
-        },
-        # Sagas e Maratonas
-        {
-            "type": "movie",
-            "id": "cine_maratona",
-            "name": t(lang, "catalog_sagas"),
-            "extra": [
-                {
-                    "name": EXTRA_NAME,
-                    "isRequired": False,
-                    "options": filtered_saga_names
-                },
-                {"name": "search", "isRequired": False},
-                {"name": "skip", "isRequired": False}
-            ],
-            "extraSupported": [EXTRA_NAME, "search", "skip"]
-        },
-        # Séries
-        {
-            "type": "series",
-            "id": "cine_series",
-            "name": t(lang, "catalog_series"),
-            "extra": [
-                {
-                    "name": EXTRA_NAME,
-                    "isRequired": False,
-                    "options": filtered_series_names
-                },
-                {"name": "search", "isRequired": False},
-                {"name": "skip", "isRequired": False}
-            ],
-            "extraSupported": [EXTRA_NAME, "search", "skip"]
-        },
-        # Animações Disney & Pixar
-        {
-            "type": "movie",
-            "id": "cine_animacoes",
-            "name": t(lang, "catalog_animations"),
-            "extra": [
-                {
-                    "name": EXTRA_NAME,
-                    "isRequired": False,
-                    "options": filtered_anim_names
-                },
-                {"name": "search", "isRequired": False},
-                {"name": "skip", "isRequired": False}
-            ],
-            "extraSupported": [EXTRA_NAME, "search", "skip"]
-        }
+    catalogs_specs = [
+        {"id": "cine_sagas",        "type": "movie",  "name": t(lang, "catalog_sagas")},
+        {"id": "cine_universos",    "type": "movie",  "name": t(lang, "catalog_universos")},
+        {"id": "cine_cronologica",  "type": "movie",  "name": t(lang, "catalog_cronologica")},
+        {"id": "cine_maratonas",    "type": "movie",  "name": t(lang, "catalog_maratonas")},
+        {"id": "cine_series_saga",  "type": "series", "name": t(lang, "catalog_series_saga")},
+        {"id": "cine_animacoes",    "type": "movie",  "name": t(lang, "catalog_animacoes")},
     ]
+
+    catalogs = []
+    for spec in catalogs_specs:
+        options = get_options_for_group(spec["id"])
+        # Só expõe o catálogo se houver opções ou se for maratona/animação (sempre visível)
+        if options or spec["id"] in ["cine_maratonas", "cine_animacoes"]:
+            catalogs.append({
+                "type": spec["type"],
+                "id": spec["id"],
+                "name": spec["name"],
+                "extra": [
+                    {
+                        "name": EXTRA_NAME,
+                        "isRequired": False,
+                        "options": sorted(list(set(options)))
+                    },
+                    {"name": "search", "isRequired": False},
+                    {"name": "skip", "isRequired": False}
+                ],
+                "extraSupported": [EXTRA_NAME, "search", "skip"]
+            })
 
     return {
         "id": ADDON_ID,

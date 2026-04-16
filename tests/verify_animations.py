@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import urllib.request
 import json
-from catalogs import ANIMATIONS
+from data.catalogs import ANIMACOES
 
 # Cinemeta API URL
 CINEMETA_URL = "https://v3-cinemeta.strem.io/meta/movie/{}.json"
@@ -12,11 +12,11 @@ CINEMETA_URL = "https://v3-cinemeta.strem.io/meta/movie/{}.json"
 errors = []
 print("Verificando IDs de Animações...\n")
 
-for saga_id, saga in ANIMATIONS.items():
-    print(f"--- Verificando {saga['name']} ---")
-    for item in saga['items']:
-        imdb_id = item['id']
-        expected_name = item['name']
+for saga_id, items in ANIMACOES.items():
+    print(f"--- Verificando {saga_id} ---")
+    for item in items:
+        imdb_id = item.id
+        expected_name = item.name
         try:
             req = urllib.request.Request(CINEMETA_URL.format(imdb_id), headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=5) as response:

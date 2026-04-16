@@ -1,10 +1,12 @@
 {
   "addon_name": "CineMaratona ES 🎬",
-  "addon_description": "(¡Ahora somos internacionales!) Find the correct order for your favorite movie franchises and series! 🍿 CineMaratona organizes sagas, thematic marathons, and special events chronologically so you can just hit play.",
-  "catalog_sagas": "Sagas y Maratones",
-  "catalog_animations": "Animaciones Disney & Pixar",
-  "catalog_series": "📺 Maratones de Series",
-  "catalog_featured": "⭐ Destacados",
+  "addon_description": "(¡Ahora somos internacionales!) Encuentra el orden correcto de tus sagas y series favoritas. 🍿 CineMaratona organiza franquicias, maratones temáticas y eventos especiales cronológicamente.",
+  "catalog_sagas": "🎬 Sagas y Franquicias",
+  "catalog_universos": "🌌 Universos Cinematográficos",
+  "catalog_cronologica": "⏱️ Orden Cronológico",
+  "catalog_maratonas": "🍿 Maratones Temáticas",
+  "catalog_series_saga": "📺 Series en Saga",
+  "catalog_animacoes": "✨ Animaciones y Anime",
   "categories": {
     "marvel": "Universo Marvel (MCU)",
     "dc": "Universo DC",
@@ -13,7 +15,7 @@
     "nolan": "Christopher Nolan",
     "oscar": "Oscar 2026",
     "destaque": "Destacados",
-    "animacoes": "Animaciones Disney & Pixar"
+    "animacoes": "Animaciones y Anime"
   },
   "configure": {
     "title": "Configurar Addon",

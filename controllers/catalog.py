@@ -4,82 +4,81 @@ import random
 import urllib.parse
 from flask import Blueprint
 
-from catalogs import CATALOGS, ANIMATIONS, SERIES
-from data.config import EXTRA_NAME
-from utils.responses import respond_with, build_metas
+from data.catalogs import get_catalog, CATALOG_GROUPS, ALL_CATALOGS
+from data.catalogs._base import to_meta
+from data.config import EXTRA_NAME, POSTER_METAHUB_URL
+from utils.responses import respond_with
 
 catalog_bp = Blueprint('catalog', __name__)
 
-# --- Cache calculado uma única vez na inicialização do controller ---
-SAGA_NAMES_SORTED = [dados["name"] for dados in CATALOGS.values()]
-CATALOG_BY_NAME = {dados["name"]: dados for dados in CATALOGS.values()}
-ALL_SAGAS = list(CATALOGS.values())
+# Mapeamento reverso de labels para IDs de saga (para processar o filtro 'genre')
+# Carregado na inicialização para performance
+from data.config import AVAILABLE_CATEGORIES
+LABEL_TO_ID = {cat["label"]: cat["id"] for cat in AVAILABLE_CATEGORIES}
 
-ANIM_NAMES_SORTED = [dados["name"] for dados in ANIMATIONS.values()]
-ANIM_BY_NAME = {dados["name"]: dados for dados in ANIMATIONS.values()}
-ALL_ANIM = list(ANIMATIONS.values())
+def build_metas_modular(items, media_type):
+    """Converte lista de CatalogItem para formato Stremio metas."""
+    return [to_meta(item, POSTER_METAHUB_URL) for item in items if item.type == media_type]
 
-SERIES_NAMES_SORTED = [dados["name"] for dados in SERIES.values()]
-SERIES_BY_NAME = {dados["name"]: dados for dados in SERIES.values()}
-ALL_SERIES = list(SERIES.values())
-
-# Catálogo de destaque dinâmico
-_DESTAQUE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'destaque.json')
-try:
-    with open(_DESTAQUE_PATH, encoding='utf-8') as f:
-        DESTAQUE = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError):
-    DESTAQUE = {"id": "destaque", "title": "⭐ Em Destaque", "items": []}
-
-
-@catalog_bp.route("/catalog/movie/cine_destaque.json")
-@catalog_bp.route("/<config_b64>/catalog/movie/cine_destaque.json")
-def addon_catalog_destaque(config_b64=None):
-    """Retorna o catálogo de destaque da semana."""
-    return respond_with({"metas": build_metas(DESTAQUE.get("items", []), "movie")})
-
+from utils.cache import cache_get, cache_set
 
 @catalog_bp.route("/catalog/<media_type>/<catalog_id>.json", defaults={"config_b64": None})
 @catalog_bp.route("/<config_b64>/catalog/<media_type>/<catalog_id>.json")
 def addon_catalog_default(config_b64, media_type, catalog_id):
     """
     Fallback acionado quando o Stremio abre a aba sem saga selecionada.
-    Exibe uma seleção aleatória de sagas.
+    Exibe uma seleção aleatória de itens do grupo correspondente.
     """
-    if media_type not in ["movie", "series"]:
+    cache_key = f"catalog_{config_b64}_{media_type}_{catalog_id}"
+    cached = cache_get(cache_key)
+    if cached:
+        return respond_with(cached)
+
+    if catalog_id not in CATALOG_GROUPS:
         return respond_with({"metas": []})
 
-    if catalog_id == "cine_maratona":
-        pool = ALL_SAGAS
-    elif catalog_id == "cine_animacoes":
-        pool = ALL_ANIM
-    elif catalog_id == "cine_series":
-        pool = ALL_SERIES
-    elif catalog_id == "cine_destaque":
-        return addon_catalog_destaque()
-    else:
+    saga_ids = CATALOG_GROUPS[catalog_id]
+    
+    # Coleta o primeiro item de cada saga do grupo para servir de "preview"
+    preview_items = []
+    for sid in saga_ids:
+        items = get_catalog(sid)
+        if items:
+            # Filtra por tipo de mídia
+            filtered = [it for it in items if it.type == media_type]
+            if filtered:
+                preview_items.append(filtered[0])
+
+    # Se não houver itens (ex: pedindo 'movie' em catálogo de 'series'), retorna vazio
+    if not preview_items:
         return respond_with({"metas": []})
 
-    sagas_aleatorias = random.sample(pool, min(15, len(pool)))
-    lista_filmes = [saga["items"][0] for saga in sagas_aleatorias if saga["items"]]
+    # Mostra uma amostra aleatória se houver muitos
+    sample_size = min(20, len(preview_items))
+    selected = random.sample(preview_items, sample_size)
 
-    return respond_with({"metas": build_metas(lista_filmes, media_type)})
+    result = {"metas": build_metas_modular(selected, media_type)}
+    cache_set(cache_key, result)
+    return respond_with(result)
 
 
 @catalog_bp.route("/catalog/<media_type>/<catalog_id>/<extra_str>.json", defaults={"config_b64": None})
 @catalog_bp.route("/<config_b64>/catalog/<media_type>/<catalog_id>/<extra_str>.json")
 def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     """
-    Rota chamada quando o usuário seleciona uma saga/série específica,
+    Rota chamada quando o usuário seleciona uma saga específica (genre),
     ou realiza uma busca (search) ou paginação (skip).
     """
-    if media_type not in ["movie", "series"]:
+    cache_key = f"catalog_extra_{config_b64}_{media_type}_{catalog_id}_{extra_str}"
+    cached = cache_get(cache_key)
+    if cached:
+        return respond_with(cached)
+
+    if catalog_id not in CATALOG_GROUPS:
         return respond_with({"metas": []})
 
-    # Fazer parsing da string `genre=marvel&skip=20` ou `search=Avatar`
     params = dict(urllib.parse.parse_qsl(extra_str))
-    
-    saga_param = params.get(EXTRA_NAME)
+    saga_label = params.get(EXTRA_NAME)
     search_param = params.get("search")
     
     try:
@@ -87,40 +86,34 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     except ValueError:
         skip_param = 0
 
-    if catalog_id == "cine_maratona":
-        pool = ALL_SAGAS
-        catalog_by_name = CATALOG_BY_NAME
-    elif catalog_id == "cine_animacoes":
-        pool = ALL_ANIM
-        catalog_by_name = ANIM_BY_NAME
-    elif catalog_id == "cine_series":
-        pool = ALL_SERIES
-        catalog_by_name = SERIES_BY_NAME
-    else:
-        return respond_with({"metas": []})
-
     lista_itens = []
 
-    # 1. Filtro por Busca (search)
+    # 1. Filtro por Busca (search) em todo o grupo
     if search_param:
         search_query = search_param.lower()
-        # Evitar dupes se o mesmo item estiver em múltiplas sagas
+        group_saga_ids = CATALOG_GROUPS[catalog_id]
         vistos = set()
-        for saga in pool:
-            for item in saga["items"]:
-                if item["id"] not in vistos and search_query in item["name"].lower():
-                    vistos.add(item["id"])
+        for sid in group_saga_ids:
+            for item in get_catalog(sid):
+                if item.id not in vistos and search_query in item.name.lower():
+                    vistos.add(item.id)
                     lista_itens.append(item)
                     
     # 2. Filtro por Saga (genre)
-    elif saga_param:
-        saga = catalog_by_name.get(saga_param)
-        if saga:
-            lista_itens = saga["items"]
+    elif saga_label:
+        saga_id = LABEL_TO_ID.get(saga_label, saga_label)
+        lista_itens = get_catalog(saga_id)
 
-    # 3. Paginação (skip)
-    # Stremio costuma requisitar os itens aos poucos se houver 'skip'.
-    # Retornamos os próximos 100 resultados.
+    # 3. Fallback se não houver extra (não deveria cair aqui pela lógica das rotas, mas por segurança)
+    else:
+        return addon_catalog_default(config_b64, media_type, catalog_id)
+
+    # Filtra por tipo de mídia
+    lista_itens = [it for it in lista_itens if it.type == media_type]
+
+    # 4. Paginação (skip)
     lista_itens = lista_itens[skip_param:skip_param+100]
 
-    return respond_with({"metas": build_metas(lista_itens, media_type)})
+    result = {"metas": build_metas_modular(lista_itens, media_type)}
+    cache_set(cache_key, result)
+    return respond_with(result)

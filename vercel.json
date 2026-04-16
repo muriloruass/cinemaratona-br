@@ -11,5 +11,25 @@
             "src": "/(.*)",
             "dest": "api/index.py"
         }
+    ],
+    "headers": [
+        {
+            "source": "/catalog/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "s-maxage=300, stale-while-revalidate=60"
+                }
+            ]
+        },
+        {
+            "source": "/(.*)/catalog/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "s-maxage=300, stale-while-revalidate=60"
+                }
+            ]
+        }
     ]
 }
