@@ -5,7 +5,9 @@ import os
 # e o 'catalogs' corretamente quando a Vercel inicializar as funções serverless.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Importar a instância Flask chamada "app" lá do app.py
-from app import app
+# Importar a instância Flask a partir da Application Factory
+from app import create_app
+
+app = create_app()
 
 # A Vercel vai procurar essa variável `app` para gerenciar as requisições HTTP.

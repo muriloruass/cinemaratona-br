@@ -8,6 +8,7 @@ from data.catalogs import get_catalog, CATALOG_GROUPS, ALL_CATALOGS
 from data.catalogs._base import to_meta
 from data.config import EXTRA_NAME, POSTER_METAHUB_URL
 from utils.responses import respond_with
+from utils.logger import log_request
 
 catalog_bp = Blueprint('catalog', __name__)
 
@@ -24,6 +25,7 @@ from utils.cache import cache_get, cache_set
 
 @catalog_bp.route("/catalog/<media_type>/<catalog_id>.json", defaults={"config_b64": None})
 @catalog_bp.route("/<config_b64>/catalog/<media_type>/<catalog_id>.json")
+@log_request
 def addon_catalog_default(config_b64, media_type, catalog_id):
     """
     Fallback acionado quando o Stremio abre a aba sem saga selecionada.
@@ -64,6 +66,7 @@ def addon_catalog_default(config_b64, media_type, catalog_id):
 
 @catalog_bp.route("/catalog/<media_type>/<catalog_id>/<extra_str>.json", defaults={"config_b64": None})
 @catalog_bp.route("/<config_b64>/catalog/<media_type>/<catalog_id>/<extra_str>.json")
+@log_request
 def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     """
     Rota chamada quando o usuário seleciona uma saga específica (genre),
