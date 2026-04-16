@@ -220,13 +220,23 @@
         <button class="btn-text" onclick="selectAll()">Selecionar todas</button>
         <button class="btn-text" onclick="deselectAll()">Desmarcar todas</button>
       </div>
-      <div class="categories-grid" id="categories">
-        {% for cat in categories %}
-        <div class="category-item">
-          <label>
-            <input type="checkbox" value="{{ cat.id }}" checked>
-            <span>{{ cat.label }}</span>
-          </label>
+      
+      <div id="categories">
+        {% for gkey, group in groups.items() %}
+        <div class="group-container" style="margin-bottom: 24px;">
+          <h3 style="font-size: 0.9rem; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid #2a1a1f; padding-bottom: 4px;">
+            {{ group.name }}
+          </h3>
+          <div class="categories-grid">
+            {% for cat in group.items %}
+            <div class="category-item">
+              <label>
+                <input type="checkbox" value="{{ cat.id }}" checked>
+                <span>{{ cat.label }}</span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
         </div>
         {% endfor %}
       </div>

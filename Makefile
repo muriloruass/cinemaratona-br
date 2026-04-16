@@ -18,6 +18,7 @@ dev:
 test:
 	@echo "🧪 Executando testes..."
 	@if [ -d "tests" ]; then \
+		$(VENV)/pytest tests/test_api.py && \
 		$(VENV)/python3 tests/test_ids.py && \
 		$(VENV)/python3 tests/test_posters.py && \
 		$(VENV)/python3 tests/verify_animations.py; \

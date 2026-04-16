@@ -1,12 +1,10 @@
 {
   "addon_name": "CineMaratona ES 🎬",
   "addon_description": "(¡Ahora somos internacionales!) Encuentra el orden correcto de tus sagas y series favoritas. 🍿 CineMaratona organiza franquicias, maratones temáticas y eventos especiales cronológicamente.",
-  "catalog_sagas": "🎬 Sagas y Franquicias",
-  "catalog_universos": "🌌 Universos Cinematográficos",
-  "catalog_cronologica": "⏱️ Orden Cronológico",
-  "catalog_maratonas": "🍿 Maratones Temáticas",
-  "catalog_series_saga": "📺 Series en Saga",
-  "catalog_animacoes": "✨ Animaciones y Anime",
+  "catalog_sagas_filmes": "🎬 Sagas de Películas",
+  "catalog_sagas_series": "📺 Sagas de Series",
+  "catalog_sagas_animacoes": "✨ Sagas de Animaciones",
+  "catalog_especiais": "⭐ Colecciones Especiales",
   "categories": {
     "marvel": "Universo Marvel (MCU)",
     "dc": "Universo DC",
@@ -23,7 +21,7 @@
     "categories_label": "Categorías visibles:",
     "generate_btn": "Generar Enlace de Instalación",
     "copy_label": "Copie y pegue en Stremio:",
-    "install_btn": "Instalar en Stremio",
+    "install_btn": "Instalar no Stremio",
     "install_note": "O agrégalo manualmente en Stremio → Addons → Community Addons → Paste URL"
   },
   "ui": {

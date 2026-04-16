@@ -67,23 +67,21 @@ def build_manifest(config: dict) -> dict:
         return [
             SAGA_LABELS.get(sid, sid) 
             for sid in ids 
-            if sid in active_cats or group_id in ["cine_animacoes", "cine_maratonas"]
+            if sid in active_cats or group_id in ["cine_sagas_animacoes", "cine_especiais"]
         ]
 
     catalogs_specs = [
-        {"id": "cine_sagas",        "type": "movie",  "name": t(lang, "catalog_sagas")},
-        {"id": "cine_universos",    "type": "movie",  "name": t(lang, "catalog_universos")},
-        {"id": "cine_cronologica",  "type": "movie",  "name": t(lang, "catalog_cronologica")},
-        {"id": "cine_maratonas",    "type": "movie",  "name": t(lang, "catalog_maratonas")},
-        {"id": "cine_series_saga",  "type": "series", "name": t(lang, "catalog_series_saga")},
-        {"id": "cine_animacoes",    "type": "movie",  "name": t(lang, "catalog_animacoes")},
+        {"id": "cine_sagas_filmes",    "type": "movie",  "name": t(lang, "catalog_sagas_filmes")},
+        {"id": "cine_sagas_series",    "type": "series", "name": t(lang, "catalog_sagas_series")},
+        {"id": "cine_sagas_animacoes", "type": "movie",  "name": t(lang, "catalog_sagas_animacoes")},
+        {"id": "cine_especiais",       "type": "movie",  "name": t(lang, "catalog_especiais")},
     ]
 
     catalogs = []
     for spec in catalogs_specs:
         options = get_options_for_group(spec["id"])
-        # Só expõe o catálogo se houver opções ou se for maratona/animação (sempre visível)
-        if options or spec["id"] in ["cine_maratonas", "cine_animacoes"]:
+        # Só expõe o catálogo se houver opções ou se for especiais/animação (sempre visível)
+        if options or spec["id"] in ["cine_especiais", "cine_sagas_animacoes"]:
             catalogs.append({
                 "type": spec["type"],
                 "id": spec["id"],
@@ -159,9 +157,34 @@ def addon_manifest_configured(config_b64):
 @app.route("/configure")
 def configure_page():
     """Página HTML interativa para o usuário configurar o addon."""
+    # Agrupar categorias para a UI
+    groups = {
+        "filmes": {"name": "🎬 Sagas de Filmes", "items": []},
+        "series": {"name": "📺 Sagas de Séries", "items": []},
+        "animacoes": {"name": "✨ Sagas de Animações", "items": []},
+        "especiais": {"name": "⭐ Coleções Especiais", "items": []}
+    }
+    
+    # Mapeamento de IDs para grupos com base na lógica do CATALOG_GROUPS
+    from data.catalogs import CATALOG_GROUPS
+    id_to_group = {}
+    for gid, ids in CATALOG_GROUPS.items():
+        # Mapeia IDs internos para chaves legíveis da UI
+        if gid == "cine_sagas_filmes": group_key = "filmes"
+        elif gid == "cine_sagas_series": group_key = "series"
+        elif gid == "cine_sagas_animacoes": group_key = "animacoes"
+        else: group_key = "especiais"
+        
+        for cid in ids:
+            id_to_group[cid] = group_key
+
+    for cat in AVAILABLE_CATEGORIES:
+        gkey = id_to_group.get(cat["id"], "especiais")
+        groups[gkey]["items"].append(cat)
+
     return render_template(
         "configure.html",
-        categories=AVAILABLE_CATEGORIES,
+        groups=groups,
         base_url=BASE_URL,
     )
 

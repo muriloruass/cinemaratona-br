@@ -1,12 +1,10 @@
 {
   "addon_name": "CineMaratona EN 🎬",
   "addon_description": "(Now we're international!) Find the correct order for your favorite movie franchises and series! 🍿 CineMaratona organizes sagas, thematic marathons, and special events chronologically.",
-  "catalog_sagas": "🎬 Sagas & Franchises",
-  "catalog_universos": "🌌 Cinematic Universes",
-  "catalog_cronologica": "⏱️ Chronological Order",
-  "catalog_maratonas": "🍿 Thematic Marathons",
-  "catalog_series_saga": "📺 Series Sagas",
-  "catalog_animacoes": "✨ Animations & Anime",
+  "catalog_sagas_filmes": "🎬 Movie Sagas",
+  "catalog_sagas_series": "📺 Series Sagas",
+  "catalog_sagas_animacoes": "✨ Animation Sagas",
+  "catalog_especiais": "⭐ Special Collections",
   "categories": {
     "marvel": "Marvel Universe (MCU)",
     "dc": "DC Universe",

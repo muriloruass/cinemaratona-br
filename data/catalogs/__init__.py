@@ -21,19 +21,29 @@ ALL_CATALOGS = {
 
 # Organização dos catálogos por grupo (IDs de catálogo do Stremio)
 CATALOG_GROUPS = {
-    "cine_universos": ["marvel", "starwars", "senhordosaneis"],
-    "cine_cronologica": ["starwars", "alien", "xmen"],
-    "cine_maratonas": ["oscar2026", "oscar2026_intl", "cinemanacional", "nolan", "tarantino", "halloween", "comedias_br"],
-    "cine_series_saga": ["dragonball_series", "starwars_series", "theboys", "gameofthrones", "walkingdead"],
-    "cine_animacoes": ["disney_filmes", "pixar_filmes", "toystory_anim", "procurandonemo", "monstros", "osincrivel", "carros", "inside_out", "leao", "frozen", "moana", "zootopia", "liloestitch", "wreck_it_ralph", "mulan_disney", "aladdin_disney", "cinderela_disney", "bela_fera", "pequena_sereia", "dumbo", "peter_pan", "pinoquio", "alicenopaisdasmaravilhas", "malefica"],
-    "cine_sagas": [
-        "007", "missaoimpossivel", "johnwick", "bourne", "velozesefuriosos", 
-        "indianajones", "jurassic", "planetadosmacacos", "exterminador", 
-        "madmax", "rambo", "rocky", "matrix", "harrypotter", 
-        "animaisfantasticos", "narnia", "jogosvorazes", "divergente", 
-        "shrek", "meumalvadofavorito", "transformers", "predador", 
-        "sextafeira13", "horadopesadelo", "poderosochefao", 
-        "piratasdocaribe", "sherlockholmes"
+    "cine_sagas_filmes": [
+        "marvel", "starwars", "harrypotter", "senhordosaneis", 
+        "007", "missaoimpossivel", "johnwick", "velozesefuriosos", 
+        "jurassic", "rocky", "matrix", "piratasdocaribe", "transformers"
+    ],
+    "cine_sagas_series": [
+        "dragonball_series", "starwars_series", "theboys", 
+        "gameofthrones", "walkingdead"
+    ],
+    "cine_sagas_animacoes": [
+        "disney_filmes", "pixar_filmes", "toystory_anim", "procurandonemo", 
+        "monstros", "osincrivel", "carros", "inside_out", "leao", "frozen", 
+        "moana", "zootopia", "liloestitch", "wreck_it_ralph", "mulan_disney", 
+        "aladdin_disney", "cinderela_disney", "bela_fera", "pequena_sereia", 
+        "dumbo", "peter_pan", "pinoquio", "alicenopaisdasmaravilhas", "malefica"
+    ],
+    "cine_especiais": [
+        "nolan", "tarantino", "cinemanacional", "halloween", "comedias_br", 
+        "alien", "predador", "xmen", "bourne", "indianajones", 
+        "planetadosmacacos", "exterminador", "madmax", "rambo", 
+        "narnia", "jogosvorazes", "divergente", "shrek", 
+        "meumalvadofavorito", "sextafeira13", "horadopesadelo", 
+        "poderosochefao", "sherlockholmes", "animaisfantasticos"
     ]
 }
 

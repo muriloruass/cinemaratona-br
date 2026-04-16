@@ -2,25 +2,6 @@ from ._base import CatalogItem
 
 # Maratonas Temáticas Curatoriais
 MARATONAS = {
-    "oscar2026": [
-        CatalogItem("tt31193180", "Sinners", 2025),
-        CatalogItem("tt30144839", "One Battle After Another", 2025),
-        CatalogItem("tt1312221", "Frankenstein", 2025),
-        CatalogItem("tt32916440", "Marty Supreme", 2025),
-        CatalogItem("tt27714581", "Sentimental Value", 2025),
-        CatalogItem("tt14905854", "Hamnet", 2025),
-        CatalogItem("tt12300742", "Bugonia", 2025),
-        CatalogItem("tt16311594", "F1", 2025),
-        CatalogItem("tt27847051", "O Agente Secreto (Brasil)", 2025, tags=["featured"]),
-        CatalogItem("tt29768334", "Train Dreams", 2025),
-        CatalogItem("tt32536315", "Blue Moon", 2025)
-    ],
-    "oscar2026_intl": [
-        CatalogItem("tt27847051", "O Agente Secreto (Brasil)", 2025),
-        CatalogItem("tt36491653", "It Was Just an Accident (França)", 2025),
-        CatalogItem("tt32298285", "Sirāt (Espanha)", 2025),
-        CatalogItem("tt36943034", "The Voice of Hind Rajab (Tunísia)", 2025)
-    ],
     "cinemanacional": [
         CatalogItem("tt14961016", "Ainda Estou Aqui", 2024),
         CatalogItem("tt27847051", "O Agente Secreto", 2025),
