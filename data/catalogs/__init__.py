@@ -29,10 +29,6 @@ CATALOG_GROUPS = {
         "narnia", "poderosochefao", "halloween", "horadopesadelo",
         "sextafeira13", "panico", "premonicao", "invocacaodomal"
     ],
-    "cine_sagas_series": [
-        "dragonball_series", "starwars_series", "theboys", 
-        "gameofthrones", "walkingdead"
-    ],
     "cine_sagas_animacoes": [
         "disney_filmes", "pixar_filmes", "toystory_anim", "procurandonemo", 
         "monstros", "osincrivel", "carros", "inside_out", "leao", "frozen", 

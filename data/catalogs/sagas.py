@@ -230,7 +230,7 @@ SAGAS = {
     "predador": [
         CatalogItem("tt0093773", "O Predador", 1987, order=1),
         CatalogItem("tt0093894", "Predador 2", 1990, order=2),
-        CatalogItem("tt0110950", "Predadores", 2010, order=3),
+        CatalogItem("tt1424381", "Predadores", 2010, order=3),
         CatalogItem("tt3829266", "O Predador", 2018, order=4),
         CatalogItem("tt11866324", "Predador: A Caçada", 2022, order=5)
     ],
@@ -248,7 +248,7 @@ SAGAS = {
     ],
     "divergente": [
         CatalogItem("tt1840309", "Divergente", 2014, order=1),
-        CatalogItem("tt2404233", "A Série Divergente: Insurgente", 2015, order=2),
+        CatalogItem("tt2908446", "A Série Divergente: Insurgente", 2015, order=2),
         CatalogItem("tt3410834", "A Série Divergente: Convergente", 2016, order=3)
     ],
     "shrek": [

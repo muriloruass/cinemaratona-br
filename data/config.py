@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Metadados do Addon ────────────────────────────────────────────────────────
-ADDON_ID = "br.cinemaratona.addon"
-ADDON_VERSION = "2.1.0"
+ADDON_ID = "br.cinemaratona.addon.movies"
+ADDON_VERSION = "2.1.1"
 
 # ── URLs ──────────────────────────────────────────────────────────────────────
 # BASE_URL pode ser sobrescrita por variável de ambiente (útil em staging/dev)
@@ -59,13 +59,6 @@ AVAILABLE_CATEGORIES = [
     {"id": "panico",             "label": "Pânico",                         "label_key": "catalog_ids.panico"},
     {"id": "premonicao",         "label": "Premonição",                     "label_key": "catalog_ids.premonicao"},
     {"id": "invocacaodomal",     "label": "Universo Invocação do Mal",      "label_key": "catalog_ids.invocacaodomal"},
-
-    # 📺 Sagas de Séries
-    {"id": "dragonball_series",  "label": "Dragon Ball (Séries)",           "label_key": "catalog_ids.dragonball_series"},
-    {"id": "starwars_series",    "label": "Star Wars (Séries)",             "label_key": "catalog_ids.starwars_series"},
-    {"id": "theboys",            "label": "The Boys Universe",              "label_key": "catalog_ids.theboys"},
-    {"id": "gameofthrones",      "label": "Game of Thrones",                "label_key": "catalog_ids.gameofthrones"},
-    {"id": "walkingdead",        "label": "The Walking Dead Universe",      "label_key": "catalog_ids.walkingdead"},
 
     # ✨ Sagas de Animações
     {"id": "disney_filmes",      "label": "Disney — Filmes Avulsos",        "label_key": "catalog_ids.disney_filmes"},

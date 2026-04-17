@@ -357,9 +357,10 @@
     <script>
       const BASE_URL = "{{ base_url }}";
       const LOCALES = {{ locales_payload | tojson }};
+      const CATEGORY_IDS = {{ category_ids | tojson }};
+      const CATEGORY_TO_INDEX = Object.fromEntries(CATEGORY_IDS.map((id, idx) => [id, idx]));
       const groupKeyToLocaleKey = {
         filmes: 'catalog_sagas_filmes',
-        series: 'catalog_sagas_series',
         animacoes: 'catalog_sagas_animacoes',
         especiais: 'catalog_especiais'
       };
@@ -415,7 +416,12 @@
           alert(tr(lang, 'configure.empty_categories', 'Selecione ao menos uma categoria!'));
           return;
         }
-        const config = { lang, categories };
+        const compactCategories = categories
+          .map((id) => CATEGORY_TO_INDEX[id])
+          .filter((idx) => Number.isInteger(idx));
+        const config = compactCategories.length === CATEGORY_IDS.length
+          ? { l: lang }
+          : { l: lang, c: compactCategories };
         const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(config))));
         const link = BASE_URL + '/' + b64 + '/manifest.json';
         document.getElementById('link-text').textContent = link;

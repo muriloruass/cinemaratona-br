@@ -22,6 +22,7 @@ from controllers.catalog import catalog_bp
 from controllers.meta import meta_bp
 
 CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
+CATEGORY_IDS = [cat["id"] for cat in AVAILABLE_CATEGORIES]
 
 def create_app(testing=False):
     app = Flask(__name__)
@@ -42,9 +43,19 @@ def create_app(testing=False):
             cfg = json.loads(decoded)
             if not isinstance(cfg, dict):
                 return default
-            lang = safe_lang(cfg.get("lang", "pt-br"))
-            categories = cfg.get("categories", DEFAULT_CATEGORIES)
-            if not isinstance(categories, list):
+            lang = safe_lang(cfg.get("l", cfg.get("lang", "pt-br")))
+
+            compact_categories = cfg.get("c")
+            if isinstance(compact_categories, list):
+                categories = [
+                    CATEGORY_IDS[idx]
+                    for idx in compact_categories
+                    if isinstance(idx, int) and 0 <= idx < len(CATEGORY_IDS)
+                ]
+            else:
+                categories = cfg.get("categories", DEFAULT_CATEGORIES)
+
+            if not isinstance(categories, list) or not categories:
                 categories = DEFAULT_CATEGORIES
             return {"lang": lang, "categories": categories}
         except Exception:
@@ -64,7 +75,6 @@ def create_app(testing=False):
 
         catalogs_specs = [
             {"id": "cine_sagas_filmes",    "type": "movie",  "name": t(lang, "catalog_sagas_filmes")},
-            {"id": "cine_sagas_series",    "type": "series", "name": t(lang, "catalog_sagas_series")},
             {"id": "cine_sagas_animacoes", "type": "movie",  "name": t(lang, "catalog_sagas_animacoes")},
             {"id": "cine_especiais",       "type": "movie",  "name": t(lang, "catalog_especiais")},
         ]
@@ -96,7 +106,7 @@ def create_app(testing=False):
             "description": t(lang, "addon_description"),
             "logo": LOGO_URL,
             "resources": ["catalog", "meta"],
-            "types": ["movie", "series"],
+            "types": ["movie"],
             "catalogs": catalogs,
             "behaviorHints": {
                 "configurable": True,
@@ -131,17 +141,27 @@ def create_app(testing=False):
 
     @app.route("/configure")
     def configure_page():
+        accept_header = request.headers.get("Accept", "").lower()
+        user_agent = request.headers.get("User-Agent", "").lower()
+
+        # Some Stremio clients may try to parse /configure as JSON.
+        # Return a valid manifest for non-HTML clients to avoid install failures.
+        wants_json = (
+            "application/json" in accept_header
+            or ("stremio" in user_agent and "text/html" not in accept_header)
+        )
+        if wants_json:
+            return respond_with(build_manifest({"lang": "pt-br", "categories": DEFAULT_CATEGORIES}))
+
         default_lang = "pt-br"
         groups = {
             "filmes": {"name": t(default_lang, "catalog_sagas_filmes"), "items": []},
-            "series": {"name": t(default_lang, "catalog_sagas_series"), "items": []},
             "animacoes": {"name": t(default_lang, "catalog_sagas_animacoes"), "items": []},
             "especiais": {"name": t(default_lang, "catalog_especiais"), "items": []}
         }
         id_to_group = {}
         for gid, ids in CATALOG_GROUPS.items():
             if gid == "cine_sagas_filmes": group_key = "filmes"
-            elif gid == "cine_sagas_series": group_key = "series"
             elif gid == "cine_sagas_animacoes": group_key = "animacoes"
             else: group_key = "especiais"
             for cid in ids: id_to_group[cid] = group_key
@@ -160,6 +180,7 @@ def create_app(testing=False):
             groups=groups,
             base_url=BASE_URL,
             locales_payload=locales_payload,
+            category_ids=CATEGORY_IDS,
             supported_langs=SUPPORTED_LANGS,
         )
 

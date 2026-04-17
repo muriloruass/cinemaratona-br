@@ -16,6 +16,7 @@ catalog_bp = Blueprint('catalog', __name__)
 
 from data.config import AVAILABLE_CATEGORIES
 CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
+CATEGORY_IDS = [cat["id"] for cat in AVAILABLE_CATEGORIES]
 
 
 def decode_config(config_b64: str) -> dict:
@@ -27,9 +28,18 @@ def decode_config(config_b64: str) -> dict:
         cfg = json.loads(decoded)
         if not isinstance(cfg, dict):
             return default
+        compact_categories = cfg.get("c")
+        if isinstance(compact_categories, list):
+            categories = [
+                CATEGORY_IDS[idx]
+                for idx in compact_categories
+                if isinstance(idx, int) and 0 <= idx < len(CATEGORY_IDS)
+            ]
+        else:
+            categories = cfg.get("categories", [])
         return {
-            "lang": safe_lang(cfg.get("lang", "pt-br")),
-            "categories": cfg.get("categories", []),
+            "lang": safe_lang(cfg.get("l", cfg.get("lang", "pt-br"))),
+            "categories": categories if isinstance(categories, list) else [],
         }
     except Exception:
         return default

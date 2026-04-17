@@ -15,7 +15,7 @@ class TestManifest:
         data = r.get_json()
         assert "id" in data
         assert "catalogs" in data
-        assert len(data["catalogs"]) == 4
+        assert len(data["catalogs"]) == 3
 
     def test_configured_manifest_filters_catalogs(self, client):
         config = base64.b64encode(json.dumps({
