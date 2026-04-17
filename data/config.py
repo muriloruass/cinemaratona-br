@@ -11,7 +11,7 @@ load_dotenv()
 
 # ── Metadados do Addon ────────────────────────────────────────────────────────
 ADDON_ID = "br.cinemaratona.addon.movies"
-ADDON_VERSION = "2.1.1"
+ADDON_VERSION = "2.5.0"
 
 # ── URLs ──────────────────────────────────────────────────────────────────────
 # BASE_URL pode ser sobrescrita por variável de ambiente (útil em staging/dev)
