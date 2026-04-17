@@ -29,7 +29,6 @@ Nesta versão, focamos em expandir o catálogo e globalizar a experiência do ad
 | Catálogo | Descrição |
 |----------|-----------|
 | 🎬 **Sagas de Filmes** | MCU, Star Wars, Harry Potter, 007, John Wick e as maiores franquias da história. |
-| 📺 **Sagas de Séries** | Universos expandidos e séries com arcos contínuos (Breaking Bad, Game of Thrones, The Boys). |
 | ✨ **Sagas de Animações** | Curadoria completa Disney, Pixar, Studio Ghibli e arcos de Anime organizados. |
 | ⭐ **Coleções Especiais** | Filmografias de diretores renomados, Ordem Cronológica de grandes estúdios e Maratonas Temáticas. |
 
