@@ -7,42 +7,13 @@ from flask import Blueprint
 
 from data.catalogs import get_catalog, CATALOG_GROUPS, ALL_CATALOGS
 from data.catalogs._base import to_meta
-from data.config import EXTRA_NAME, POSTER_METAHUB_URL
+from data.config import EXTRA_NAME, POSTER_METAHUB_URL, AVAILABLE_CATEGORIES
 from utils.responses import respond_with
 from utils.logger import log_request
 from utils.i18n import safe_lang, category_label, title_label
+from utils.config_parser import parse_addon_config
 
 catalog_bp = Blueprint('catalog', __name__)
-
-from data.config import AVAILABLE_CATEGORIES
-CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
-CATEGORY_IDS = [cat["id"] for cat in AVAILABLE_CATEGORIES]
-
-
-def decode_config(config_b64: str) -> dict:
-    default = {"lang": "pt-br", "categories": []}
-    if not config_b64:
-        return default
-    try:
-        decoded = base64.b64decode(config_b64 + "==").decode("utf-8")
-        cfg = json.loads(decoded)
-        if not isinstance(cfg, dict):
-            return default
-        compact_categories = cfg.get("c")
-        if isinstance(compact_categories, list):
-            categories = [
-                CATEGORY_IDS[idx]
-                for idx in compact_categories
-                if isinstance(idx, int) and 0 <= idx < len(CATEGORY_IDS)
-            ]
-        else:
-            categories = cfg.get("categories", [])
-        return {
-            "lang": safe_lang(cfg.get("l", cfg.get("lang", "pt-br"))),
-            "categories": categories if isinstance(categories, list) else [],
-        }
-    except Exception:
-        return default
 
 
 def build_label_lookup(lang: str) -> dict:
@@ -79,7 +50,7 @@ def addon_catalog_default(config_b64, media_type, catalog_id):
     if cached:
         return respond_with(cached)
 
-    config = decode_config(config_b64)
+    config = parse_addon_config(config_b64)
     lang = config.get("lang", "pt-br")
 
     if catalog_id not in CATALOG_GROUPS:
@@ -123,49 +94,53 @@ def addon_catalog_com_extra(config_b64, media_type, catalog_id, extra_str):
     if cached:
         return respond_with(cached)
 
-    config = decode_config(config_b64)
+    config = parse_addon_config(config_b64)
     lang = config.get("lang", "pt-br")
     label_to_id = build_label_lookup(lang)
 
     if catalog_id not in CATALOG_GROUPS:
         return respond_with({"metas": []})
 
+    import itertools
     params = dict(urllib.parse.parse_qsl(extra_str))
     saga_label = params.get(EXTRA_NAME)
     search_param = params.get("search")
     
     try:
         skip_param = int(params.get("skip", 0))
-    except ValueError:
+    except (ValueError, TypeError):
         skip_param = 0
 
-    lista_itens = []
+    seen = set()
 
-    # 1. Filtro por Busca (search) em todo o grupo
-    if search_param:
-        search_query = search_param.lower()
-        group_saga_ids = CATALOG_GROUPS[catalog_id]
-        vistos = set()
-        for sid in group_saga_ids:
-            for item in get_catalog(sid):
-                if item.id not in vistos and search_query in item.name.lower():
-                    vistos.add(item.id)
-                    lista_itens.append(item)
-                    
-    # 2. Filtro por Saga (genre)
-    elif saga_label:
-        saga_id = label_to_id.get(saga_label, saga_label)
-        lista_itens = get_catalog(saga_id)
+    def _get_items_gen():
+        # 1. Filtro por Busca (search) em todo o grupo
+        if search_param:
+            search_query = search_param.lower()
+            group_saga_ids = CATALOG_GROUPS.get(catalog_id, [])
+            for sid in group_saga_ids:
+                for item in get_catalog(sid):
+                    if (item.id not in seen 
+                            and item.type == media_type 
+                            and search_query in item.name.lower()):
+                        seen.add(item.id)
+                        yield item
+                        
+        # 2. Filtro por Saga (genre)
+        elif saga_label:
+            saga_id = label_to_id.get(saga_label, saga_label)
+            for item in get_catalog(saga_id):
+                if item.id not in seen and item.type == media_type:
+                    seen.add(item.id)
+                    yield item
 
-    # 3. Fallback se não houver extra (não deveria cair aqui pela lógica das rotas, mas por segurança)
-    else:
+    # Aplica a paginação via islice de forma eficiente no generator
+    items_generator = _get_items_gen()
+    lista_itens = list(itertools.islice(items_generator, skip_param, skip_param + 100))
+
+    # Se cairmos aqui sem resultados (e não for busca/genre), chamamos o default
+    if not search_param and not saga_label:
         return addon_catalog_default(config_b64, media_type, catalog_id)
-
-    # Filtra por tipo de mídia
-    lista_itens = [it for it in lista_itens if it.type == media_type]
-
-    # 4. Paginação (skip)
-    lista_itens = lista_itens[skip_param:skip_param+100]
 
     result = {"metas": build_metas_modular(lista_itens, media_type, lang=lang)}
     cache_set(cache_key, result)

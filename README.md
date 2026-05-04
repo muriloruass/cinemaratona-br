@@ -1,84 +1,85 @@
-# 🎬 CineMaratona BR
+# CineMaratona BR 🎬🍿
 
-<p align="center">
-  <img src="CineMaratonaLogo.png" width="150" alt="CineMaratona BR Logo">
-</p>
+> O Addon definitivo para o Stremio, focado em Sagas, Maratonas e Coleções Especiais. 
+> 
+> *The ultimate Stremio Addon focused on Sagas, Marathons, and Special Collections.*
 
-<p align="center">
-  <strong>Encontre a ordem certa. Assista do jeito certo.</strong>
-</p>
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy Status](https://img.shields.io/badge/Vercel-Deployed-success)](https://vercel.com/)
 
-<p align="center">
-  O <strong>CineMaratona BR</strong> organiza sagas, franquias e universos cinematográficos na ordem correta de assistir — seja cronológica ou por data de lançamento. Feito por fãs, para fãs, eliminando a confusão de ordens complexas e garantindo a melhor experiência sem spoilers diretamente no seu Stremio.
-</p>
+Organize o caos cinematográfico. O **CineMaratona BR** cria catálogos customizados diretamente no seu Stremio, organizando filmes em ordem cronológica de sagas famosas (Marvel, Star Wars, etc.), estúdios (Pixar, Disney) e coleções focadas no cinema Brasileiro e diretores aclamados.
 
----
+## ✨ Features
 
-### ✨ Novidades da Versão 2.5
+*   **Sagas Organizadas:** Assista MCU, Harry Potter e Senhor dos Anéis na ordem correta.
+*   **Animações Agrupadas:** Coleções focadas em Disney, Pixar, Dreamworks.
+*   **Maratonas Especiais:** Terror, Cinema Nacional, Coleções Tarantino e Nolan.
+*   **Pesquisa Integrada:** Busque filmes diretamente dentro dos grupos do addon.
+*   **Multilíngue:** Interface de configuração e rótulos traduzidos (pt-br, en-us, es, fr).
+*   **Leve e Rápido:** Operação serverless rodando na Edge com Cache Otimizado.
 
-Nesta versão, focamos em expandir o catálogo e globalizar a experiência do addon:
-- 🌍 **Suporte ao idioma Francês**: Interface e catálogos agora adaptados para usuários francófonos (junto com Português, Inglês e Espanhol).
-- 📚 **Sagas Expandidas**: Listas de sagas maiores, mais precisas e com ordenações atualizadas.
-- 🏛️ **Clássicos do Cinema**: Adição de grandes clássicos que moldaram a história do cinema.
-- 🎨 **Mais Animações**: Inclusão de novos arcos, curadoria expandida de animes e grandes estúdios.
+## 🚀 Installation | Como Instalar
 
----
+Acesse a página de configuração, selecione as sagas que deseja adicionar ao seu Stremio e clique em **Install**:
 
-### 📦 O que este Addon oferece?
+🔗 **[Página de Instalação (Configure here)](https://cinemaratona-br.vercel.app/configure)**
 
-| Catálogo | Descrição |
-|----------|-----------|
-| 🎬 **Sagas de Filmes** | MCU, Star Wars, Harry Potter, 007, John Wick e as maiores franquias da história. |
-| ✨ **Sagas de Animações** | Curadoria completa Disney, Pixar, Studio Ghibli e arcos de Anime organizados. |
-| ⭐ **Coleções Especiais** | Filmografias de diretores renomados, Ordem Cronológica de grandes estúdios e Maratonas Temáticas. |
+## 🛠️ Configuration & Development
 
----
+1. Clone o repositório e acesse a pasta:
+   ```bash
+   git clone https://github.com/muriloruass/cinemaratona-br.git
+   cd cinemaratona-br
+   ```
+2. Crie um ambiente virtual e instale as dependências de desenvolvimento:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # ou venv\Scripts\activate no Windows
+   pip install -r requirements-dev.txt
+   ```
+3. Execute a suíte de testes:
+   ```bash
+   pytest
+   ```
+4. Execute o servidor localmente:
+   ```bash
+   python app.py
+   ```
+   A aplicação rodará em `http://localhost:7000`.
 
-### 🚀 Instalação e Uso
+## 📦 How it works (Arquitetura)
 
-1. Acesse a nossa [Página de Configuração Oficial](https://cinemaratona-br.vercel.app/configure).
-2. Escolha o seu idioma preferido.
-3. Selecione as categorias e sagas que deseja incluir no seu Stremio.
-4. Clique em **Gerar Link de Instalação**.
-5. Abra o link gerado e instale o addon diretamente no Stremio.
-6. Prepare a pipoca e bom filme! 🍿
-
----
-
-### 🗺️ Roadmap & Próximos Passos
-
-Estamos sempre trabalhando para trazer mais conteúdo nostálgico e organizado para você. O nosso próximo grande passo é a inclusão da categoria **Nostalgia Brasileira & Global**:
-
-- 🟢 **Nickelodeon & Cartoon Network**: Os grandes clássicos animados da nossa infância.
-- 📺 **TV Globinho & SBT**: Desenhos e séries que marcaram as manhãs brasileiras (incluindo o universo completo de **Chaves** e Chapolin).
-- 🎭 **TV Cultura**: Obras primas educativas e nostálgicas (Castelo Rá-Tim-Bum, Cocoricó, etc.).
-
----
-
-### 🛠️ Desenvolvimento e Infraestrutura
-
-Este addon é construído em **Python (Flask)**, utilizando uma arquitetura leve e rápida projetada para rodar em **Serverless (Vercel)**.
-
-- **Modularidade:** Dados de catálogo estaticamente gerados e organizados na pasta `data/`.
-- **Performance:** Sistema de *Edge Caching* e *Cache In-Memory* robusto para evitar lentidão nas consultas do Stremio.
-- **Confiabilidade:** Cobertura de testes automatizados para garantir a integridade de todos os IDs do IMDb/TMDB.
-
-**Comandos Úteis (Para Desenvolvedores):**
-```bash
-# Configurar ambiente local
-make install
-
-# Rodar servidor de desenvolvimento
-make dev
-
-# Rodar suíte de testes de integridade
-make test
+```text
+[ Stremio Client ]
+       │ (1) GET /<config>/manifest.json
+       ▼
+[ Vercel Edge / CDN ]  <─── (Cache s-maxage=86400)
+       │ (2) Parse Config -> Retorna Catálogos Ativos
+       │
+       ▼ (3) GET /catalog/movie/.../genre=MCU.json
+[ CineMaratona Core (Flask) ]
+       │ -> Consulta data/catalogs em memória (Generators + islice)
+       │ -> Cache Local (TTLCache)
+       ▼
+[ Retorna JSON formatado (Stremio Metas) ]
 ```
 
----
+## 📖 API Reference
 
-<p align="center">
-  Desenvolvido com ♥ por <a href="https://github.com/muriloruass">@muriloruass</a> <br>
-  <a href="https://github.com/muriloruass/cinemaratona-br">⭐ Deixe uma estrela no GitHub</a> · 
-  <a href="https://buymeacoffee.com/muriloluce7">☕ Pague um café para o dev</a>
-</p>
+*   `GET /configure`: UI web para o usuário gerar o link de instalação.
+*   `GET /health`: Health check JSON para monitoramento (SRE).
+*   `GET /<config_b64>/manifest.json`: Endpoint principal consumido pelo Stremio.
+*   `GET /<config_b64>/catalog/<media_type>/<catalog_id>/<extra>.json`: Busca itens de um catálogo.
+
+## 🤝 Contributing
+
+Contribuições são muito bem-vindas! Se você quer adicionar uma nova saga ou corrigir IDs de filmes:
+1. Abra uma Issue detalhando a saga.
+2. Atualize ou crie um arquivo em `data/catalogs/`.
+3. Rode `python scripts/sync_saga.py "Nome da Saga" "slug"` para baixar os IDs.
+4. Envie um Pull Request.
+
+## 📜 License
+
+Este projeto está licenciado sob a licença [MIT](LICENSE).

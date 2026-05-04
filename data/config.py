@@ -104,4 +104,5 @@ AVAILABLE_CATEGORIES = [
 ]
 
 # IDs habilitados por padrão para novos usuários (todas as categorias)
-DEFAULT_CATEGORIES: list[str] = [cat["id"] for cat in AVAILABLE_CATEGORIES]
+CATEGORY_IDS: list[str] = [cat["id"] for cat in AVAILABLE_CATEGORIES]
+DEFAULT_CATEGORIES: list[str] = CATEGORY_IDS

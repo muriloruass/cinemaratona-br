@@ -1,26 +1,15 @@
-from flask import jsonify
+from flask import jsonify, Response
 from data.config import POSTER_METAHUB_URL
 
-def respond_with(data):
+def respond_with(data: dict) -> Response:
     """Retorna respostas no formato JSON requerido pelo Stremio com headers de cache e CORS."""
     response = jsonify(data)
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    # Cache de 5 minutos (300s) com revalidação em background (60s)
-    response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=60"
+    
+    # Cache de 24h na CDN (Vercel Edge) com revalidação em background de 1h
+    response.headers["Cache-Control"] = (
+        "public, s-maxage=86400, stale-while-revalidate=3600"
+    )
+    response.headers["Vary"] = "Accept-Encoding"
     return response
-
-def build_metas(items: list, media_type: str) -> list:
-    """
-    Constrói a lista de metas no formato esperado pelo Stremio.
-    Centraliza a lógica usada por todos os handlers de catálogo.
-    """
-    return [
-        {
-            "id": item["id"],
-            "type": media_type,
-            "name": item["name"],
-            "poster": POSTER_METAHUB_URL.format(item["id"]),
-        }
-        for item in items
-    ]

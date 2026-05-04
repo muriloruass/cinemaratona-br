@@ -8,6 +8,7 @@ from data.config import (
     LOGO_URL,
     AVAILABLE_CATEGORIES,
     DEFAULT_CATEGORIES,
+    CATEGORY_IDS,
     EXTRA_NAME,
 )
 import urllib.parse
@@ -15,14 +16,15 @@ import json
 import base64
 import os
 
-from utils.i18n import t, safe_lang, category_label, get_locale, SUPPORTED_LANGS
+from utils.i18n import t, category_label, get_locale, SUPPORTED_LANGS
 from utils.responses import respond_with
+from utils.config_parser import parse_addon_config
 
 from controllers.catalog import catalog_bp
 from controllers.meta import meta_bp
+from controllers.health import health_bp
 
 CATEGORY_BY_ID = {cat["id"]: cat for cat in AVAILABLE_CATEGORIES}
-CATEGORY_IDS = [cat["id"] for cat in AVAILABLE_CATEGORIES]
 
 def create_app(testing=False):
     app = Flask(__name__)
@@ -33,33 +35,7 @@ def create_app(testing=False):
 
     app.register_blueprint(catalog_bp)
     app.register_blueprint(meta_bp)
-
-    def decode_config(config_b64: str) -> dict:
-        default = {"lang": "pt-br", "categories": DEFAULT_CATEGORIES}
-        if not config_b64:
-            return default
-        try:
-            decoded = base64.b64decode(config_b64 + "==").decode("utf-8")
-            cfg = json.loads(decoded)
-            if not isinstance(cfg, dict):
-                return default
-            lang = safe_lang(cfg.get("l", cfg.get("lang", "pt-br")))
-
-            compact_categories = cfg.get("c")
-            if isinstance(compact_categories, list):
-                categories = [
-                    CATEGORY_IDS[idx]
-                    for idx in compact_categories
-                    if isinstance(idx, int) and 0 <= idx < len(CATEGORY_IDS)
-                ]
-            else:
-                categories = cfg.get("categories", DEFAULT_CATEGORIES)
-
-            if not isinstance(categories, list) or not categories:
-                categories = DEFAULT_CATEGORIES
-            return {"lang": lang, "categories": categories}
-        except Exception:
-            return default
+    app.register_blueprint(health_bp)
 
     def build_manifest(config: dict) -> dict:
         lang = config.get("lang", "pt-br")
@@ -122,10 +98,6 @@ def create_app(testing=False):
     def index():
         return redirect("/configure")
 
-    @app.route("/ping")
-    def ping():
-        return "pong", 200
-
     @app.route("/CineMaratonaLogo.png")
     def addon_logo():
         return send_file("CineMaratonaLogo.png", mimetype="image/png")
@@ -136,7 +108,7 @@ def create_app(testing=False):
 
     @app.route("/<config_b64>/manifest.json")
     def addon_manifest_configured(config_b64):
-        config = decode_config(config_b64)
+        config = parse_addon_config(config_b64)
         return respond_with(build_manifest(config))
 
     @app.route("/configure")
@@ -144,8 +116,6 @@ def create_app(testing=False):
         accept_header = request.headers.get("Accept", "").lower()
         user_agent = request.headers.get("User-Agent", "").lower()
 
-        # Some Stremio clients may try to parse /configure as JSON.
-        # Return a valid manifest for non-HTML clients to avoid install failures.
         wants_json = (
             "application/json" in accept_header
             or ("stremio" in user_agent and "text/html" not in accept_header)
